@@ -14,7 +14,7 @@ def register(request):
         if password == password2:
             if User.objects.filter(username=username_form).exists():
                 context = {'error': 'Username already exists.'}
-                return render (request, 'main_app/templates/registration/signup.html', context)
+                return render (request, 'registration/signup.html', context)
             
             else:
                 user = User.objects.create_user(
@@ -24,7 +24,7 @@ def register(request):
                 return redirect('home')  
         else: 
                 context = {'error':'Passwords do not match.'}
-                return render(request, 'main_app/templates/registration/signup.html', context)
+                return render(request, 'registration/signup.html', context)
     else:
-            return render(request, 'main_app/templates/registration/signup.html')
+            return render(request, 'registration/signup.html')
                     

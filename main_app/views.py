@@ -1,7 +1,7 @@
 from django.shortcuts import render
 from django.http import HttpResponse, JsonResponse
-from .models import Image
-from .forms import ImageForm
+#from .models import Image
+#from .forms import ImageForm
 from django.contrib import auth
 from django.contrib.auth.models import User
 
@@ -17,18 +17,18 @@ def about(request):
 
 # --- Image Views ---
 
-def showimage(request):
-    lastimage= Image.objects.last()
-    imagefile= lastimage.imagefile
+# def showimage(request):
+#     lastimage= Image.objects.last()
+#     imagefile= lastimage.imagefile
 
-    form= ImageForm(request.POST or None, request.FILES or None)
-    if form.is_valid():
-        form.save()
+#     form= ImageForm(request.POST or None, request.FILES or None)
+#     if form.is_valid():
+#         form.save()
     
-    context= {'imagefile': imagefile,
-              'form': form
-              }
-    #set the path for user images      
-    return render(request, 'User/images.html', context)
+#     context= {'imagefile': imagefile,
+#               'form': form
+#               }
+#     #set the path for user images      
+#     return render(request, 'User/images.html', context)
 
-    
+

@@ -5,11 +5,11 @@ from django.contrib.auth.models import User
 
 
 
-class Image(models.Model):
-    imagefile= models.FileField(upload_to='images/', null=True, verbose_name="")
+# class Image(models.Model):
+#     imagefile= models.FileField(upload_to='images/', null=True, verbose_name="")
 
-    def __str__(self):
-        return self.imagefile
+#     def __str__(self):
+#         return self.imagefile
         # in case the above doesn't work this was in the tutorial 
         # str(self.imagefile)
 
@@ -37,7 +37,7 @@ class User_Profile(models.Model):
     user_city = models.CharField(max_length=150)
     join_date = models.DateField('Join Date')
     post = models.ManyToManyField(Post)
-    image = models.ForeignKey(Image, on_delete=models.CASCADE)
+    #image = models.ForeignKey(Image, on_delete=models.CASCADE)
 
     def __str__(self):
         return self.user_name
