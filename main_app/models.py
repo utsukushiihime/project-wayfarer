@@ -6,13 +6,11 @@ from django.contrib.auth.models import User
 
 
 # class Image(models.Model):
-#     imagefile= models.FileField(upload_to='images/', null=True, verbose_name="")
+#     name= models.CharField(max_length=500)
+#     videofile= models.FileField(upload_to='images/', null=True, verbose_name="")
 
 #     def __str__(self):
-#         return self.imagefile
-        # in case the above doesn't work this was in the tutorial 
-        # str(self.imagefile)
-
+#         return self.name + ": " + str(self.imagefile)
 
 
 class Post(models.Model):
