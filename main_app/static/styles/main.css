@@ -1,3 +1,11 @@
+ /*  */
+
 #headerreg {
     color: white;
+}
+
+
+/*  Bootstrap Overrides */
+.carousel-item {
+    max-height: 400px !important;
 }
