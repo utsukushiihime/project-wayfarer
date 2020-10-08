@@ -12,12 +12,12 @@ class User_Profile(models.Model):
     post = models.TextField(max_length=600)
 
 
-class Image(models.Model):
-    name= models.CharField(max_length=500)
-    videofile= models.FileField(upload_to='images/', null=True, verbose_name="")
+# class Image(models.Model):
+#     name= models.CharField(max_length=500)
+#     videofile= models.FileField(upload_to='images/', null=True, verbose_name="")
 
-    def __str__(self):
-        return self.name + ": " + str(self.imagefile)
+#     def __str__(self):
+#         return self.name + ": " + str(self.imagefile)
 
 
 class Post(models.Model):
