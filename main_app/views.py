@@ -9,15 +9,12 @@ from .forms import ImageForm
 # --- Base Views ---
 def home(request):
     return render(request, 'home.html')
-<<<<<<< HEAD
 
 def about(request):
     return render(request, 'about.html')
 
 
 # --- Image Views ---
-=======
->>>>>>> submaster
 
 def showimage(request):
     lastimage= Image.objects.last()
