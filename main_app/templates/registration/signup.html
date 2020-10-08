@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+  {% if error %}
+    <p>{{error}}</p>
+  {% endif %}
+
+  <section class="form-section">
+    <form action="{% url 'register'%}" method="POST">
+        {% csrf_token %}
+        <p>
+            <label for="username">User Name</label>
+            <input type="text" name="username" maxlength="20" minlength="2" required>
+        </p>
+        <p>
+          <label for="password">Password</label>
+          <input type="password" name="password"  maxlength="20" minlength="7" required>
+        </p>
+        <p>
+          <label for="password2">Confirm Password</label>
+          <input type="password" name="password2"  maxlength="20" minlength="7" required>
+        </p>
+        <button type="submit">Sign Up</button>
+      </form>
+    </section>
+  
+  {% endblock %}
+
+       
+

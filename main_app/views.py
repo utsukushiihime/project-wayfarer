@@ -20,7 +20,11 @@ def about(request):
 #     lastimage= Image.objects.last()
 #     imagefile= lastimage.imagefile
 
+<<<<<<< HEAD
+#     form= ImageForm(request.POST or None, request.FILES or None)
+=======
 #     form= Image_Form(request.POST or None, request.FILES or None)
+>>>>>>> submaster
 #     if form.is_valid():
 #         form.save()
     
@@ -29,3 +33,8 @@ def about(request):
 #               }
 #     #set the path for user images      
 #     return render(request, 'User/images.html', context)
+<<<<<<< HEAD
+
+
+=======
+>>>>>>> submaster
