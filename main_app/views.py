@@ -2,7 +2,8 @@ from django.shortcuts import render
 from django.http import HttpResponse, JsonResponse
 from .models import Image
 from .forms import ImageForm
-
+from django.contrib import auth
+from django.contrib.auth.models import User
 
 # Create your views here.
 
@@ -29,3 +30,5 @@ def showimage(request):
               }
     #set the path for user images      
     return render(request, 'User/images.html', context)
+
+    
