@@ -4,7 +4,7 @@ from django.contrib.auth.models import User
 
 # Create your views here.
 
-#---Register View ---
+#---Registration View ---
 def register(request):
     if request.method == "POST":
         username_form = request.POST['username']
@@ -27,5 +27,4 @@ def register(request):
                 return render(request, 'main_app/templates/registration/signup.html', context)
     else:
             return render(request, 'main_app/templates/registration/signup.html')
-                    
                     
