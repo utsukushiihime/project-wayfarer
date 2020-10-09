@@ -22,7 +22,7 @@ def register(request):
                     username = username_form,
                     password = password)
                 user.save()
-                return redirect('home')  
+                return redirect('home') #change redirect when user page created
         else: 
                 context = {'error':'Passwords do not match.'}
                 return render(request, 'registration/signup.html', context)
@@ -40,10 +40,15 @@ def login(request):
     user = auth.authenticate(username=username_form, password=password_form)
     if user is not None:
       auth.login(request, user)
-      return redirect('home')
+      return redirect('home') #change redirect when user page created
     else:
       context = {'error':'Invalid Credentials'}
       return render(request, 'registration/login.html', context)
   else:
     return render(request, 'registration/login.html')
+
+#-- logout view ---
+def logout(request):
+    auth.logout(request)
+    return redirect('home')
                     
