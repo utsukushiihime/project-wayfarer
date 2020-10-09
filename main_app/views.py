@@ -13,6 +13,12 @@ def home(request):
 def about(request):
     return render(request, 'about.html')
 
+def profile(request):
+    return render(request, 'user/profile.html')
+
+def index(request):
+    return render(request, 'cities/index.html')
+
 
 # --- Image Views ---
 
