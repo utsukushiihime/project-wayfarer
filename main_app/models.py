@@ -5,12 +5,12 @@ from django.contrib.auth.models import User
 
 
 
-# class Image(models.Model):
-#     name= models.CharField(max_length=500)
-#     videofile= models.FileField(upload_to='images/', null=True, verbose_name="")
+class Image(models.Model):
+    name= models.CharField(max_length=500)
+    videofile= models.FileField(upload_to='images/', null=True, verbose_name="")
 
-#     def __str__(self):
-#         return self.name + ": " + str(self.imagefile)
+    def __str__(self):
+        return self.name + ": " + str(self.imagefile)
 
 
 class Post(models.Model):
@@ -25,6 +25,7 @@ def __str__(self):
 class City(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     post = models.ForeignKey(Post, on_delete=models.CASCADE)
+    city_name = models.CharField(max_length=75)
 
 def __str__(self):
         return self.user_name
