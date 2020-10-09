@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.contrib import auth
 from django.contrib.auth.models import User
 #from django.contrib.auth.decorators import login_required
@@ -22,7 +22,7 @@ def register(request):
                     username = username_form,
                     password = password)
                 user.save()
-                return redirect('home') #change redirect when user page created
+                return redirect('registration/login.html')
         else: 
                 context = {'error':'Passwords do not match.'}
                 return render(request, 'registration/signup.html', context)
@@ -40,7 +40,7 @@ def login(request):
     user = auth.authenticate(username=username_form, password=password_form)
     if user is not None:
       auth.login(request, user)
-      return redirect('home') #change redirect when user page created
+      return redirect('user/profile.html') 
     else:
       context = {'error':'Invalid Credentials'}
       return render(request, 'registration/login.html', context)
