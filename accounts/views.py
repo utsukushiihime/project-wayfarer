@@ -1,7 +1,7 @@
 from django.shortcuts import render
 from django.contrib import auth
 from django.contrib.auth.models import User
-from django.contrib.auth.decorators import login_required
+#from django.contrib.auth.decorators import login_required
 
 # Create your views here.
 
@@ -32,7 +32,7 @@ def register(request):
 
 #--- login view ---
 
-@login_required
+#@login_required
 def login(request):
   if request.method == 'POST':
     username_form = request.POST['username']
