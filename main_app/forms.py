@@ -1,5 +1,5 @@
 from django.forms import ModelForm
-from .models import Image, Post, User_Profile
+from .models import Image, Post, Profile
 
 class Image_Form(ModelForm):
     class Meta:
@@ -8,8 +8,8 @@ class Image_Form(ModelForm):
         
 class User_Form(ModelForm):
     class Meta:
-        model = User_Profile
-        fields = ['user_name', 'user_city', 'join_date', 'post']
+        model = Profile
+        fields = ['name', 'user_city', 'join_date', 'post', 'image']
 
 class Post_Form(ModelForm):
     class Meta:

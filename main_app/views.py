@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect
 from django.http import HttpResponse, JsonResponse
-from .models import Image, User_Profile, City, Post
+from .models import Image, Profile, City, Post
 from .forms import Image_Form
 from django.contrib.auth import login
 from django.contrib.auth.forms import UserCreationForm
@@ -40,7 +40,7 @@ def user_index(request):
             # save() to the db
             new_user.save()
             return redirect('user_index')
-    users = User_Profile.objects.filter(user=request.user)
+    users = Profile.objects.filter(user=request.user)
     user_form = User_Form()
     context = {'user': user, 'user_form': user_form}
     return render(request, 'user/profile.html', context)

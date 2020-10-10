@@ -1,56 +1,63 @@
 {% extends 'base.html' %}
 {% load static %}
 {% block content %}
-
-<div class='row'>
-    <div class='col-5'>Username
-        <ul class="nav flex-column">
-            <li>
-                <img src="https://i.imgur.com/4Pyu8tv.jpg?1" alt="">
-            </li>
-            <li>
-                <a>Join Date</a>
-            </li>
-            <li>
-                <a>Current City</a>
-            </li>
-            <li>
-                <img src="https://i.imgur.com/Xf2FkIK.png?3" alt="">
-            </li>
-        </ul>
-    </div>
-    <div class='col-7'>
-        Posts
-        <!-- <div class="col">
-            {% for user in users %}
-            <div class="card">
-              <a href="{% url 'detail' user.id %}">
-                <div class="card-content">
-                  <span class="card-title">{{ user.post }}</span>
+<div class="container">
+    <div class='row'>
+        <div class='col-5'>{{ user.username }}
+            <ul class="nav flex-column">
+                <li>
+                    <img src="https://i.imgur.com/4Pyu8tv.jpg?1" alt="">
+                </li>
+                <li>
+                    <a>{{ user.date_joined }}</a>
+                </li>
+                <li>
+                    <!-- TODO add city auto populate when typing -->
+                    <form action="user/city" method="post">
+                        input:<div class="form-group">
+                        <label for=""></label>
+                        <input type="text" name="" id="" class="form-control" placeholder="What's your city?" aria-describedby="helpId">
+                        <small id="helpId" class="text-muted">Input your current city.</small>
+                        </div>
+                    </form>
+                </li>
+                <li>
+                    <img src="https://i.imgur.com/Xf2FkIK.png?3" alt="">
+                </li>
+            </ul>
+        </div>
+        <div class='col-7'>
+            Posts
+            <!-- <div class="col">
+                {% for user in users %}
+                <div class="card">
+                <a href="{% url 'detail' user.id %}">
+                    <div class="card-content">
+                    <span class="card-title">{{ user.post }}</span>
+                    </div>
+                </a>
                 </div>
-              </a>
-            </div>
-            {% endfor %}
-          </div> -->
-        <ul class="nav flex-column pills">
-            <li class="nav-item">
-                <img src='https://i.imgur.com/Xf2FkIK.png?3' alt="">
-                <a>Lorem Ipsum</a>
-            </li>
-            <li class="nav-item">
-                <img src='https://i.imgur.com/Xf2FkIK.png?3' alt="">
-                <a>Lorem Ipsum</a>
-            </li>
-            <li class="nav-item">
-                <img src='https://i.imgur.com/Xf2FkIK.png?3' alt="">
-                <a>Lorem Ipsum</a>
-            </li>
-            <li class="nav-item">
-                <img src='https://i.imgur.com/Xf2FkIK.png?3' alt="">
-                <a>Lorem Ipsum</a>
-            </li>
-        </ul>
+                {% endfor %}
+            </div> -->
+            <ul class="nav flex-column pills">
+                <li class="nav-item">
+                    <img src='https://i.imgur.com/Xf2FkIK.png?3' alt="">
+                    <a>Lorem Ipsum</a>
+                </li>
+                <li class="nav-item">
+                    <img src='https://i.imgur.com/Xf2FkIK.png?3' alt="">
+                    <a>Lorem Ipsum</a>
+                </li>
+                <li class="nav-item">
+                    <img src='https://i.imgur.com/Xf2FkIK.png?3' alt="">
+                    <a>Lorem Ipsum</a>
+                </li>
+                <li class="nav-item">
+                    <img src='https://i.imgur.com/Xf2FkIK.png?3' alt="">
+                    <a>Lorem Ipsum</a>
+                </li>
+            </ul>
+        </div>
     </div>
 </div>
-
 {% endblock %}
