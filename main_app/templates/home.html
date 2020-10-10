@@ -28,6 +28,12 @@
   </a>
 </div>
 <div class='text-center pt-3 pb-2'>
+  
+  {% if user.is_authenticated %}
+  <h1>Welcome {{ user.first_name }}</h1>
+  {% endif %}
+    
+
     <h3>Wayfarer is...</h3>
 </div>
 <div class='container'>
