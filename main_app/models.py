@@ -31,4 +31,3 @@ class Profile(models.Model):
     current_city = models.ForeignKey(City, on_delete=models.CASCADE)
     post = models.ManyToManyField(Post)
     image = models.ForeignKey(Image, on_delete=models.CASCADE)
-

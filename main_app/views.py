@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect
 from django.http import HttpResponse, JsonResponse
-from .models import Image, Profile, City, Post
+from .models import Image, Profile, City, Post, User
 from .forms import Image_Form, City_Form, Post_Form, User_Form, Register_Form, Profile_Form
 from django.contrib.auth import login, authenticate
 from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
@@ -21,6 +21,7 @@ def about(request):
 def api(request):
     return JsonResponse({"status": 200})
 
+# --- City Index ---
 def cities_index(request):
     if request.method == 'POST':
         city_form = City_Form(request.POST)
@@ -34,9 +35,15 @@ def cities_index(request):
         context = {'cities': cities, 'city_form': city_form, 'login': AuthenticationForm(), 'signup': UserCreationForm()}
         return render(request,'cities/index.html', context)
 
+# --- City Detail ---
+def cities_detail(request, city_id):
+    city = City.objects.get(id=city_id)
+    posts = Post.objects.filter(city_id=city.id)
+    post_form = Post_Form()
+    context = {'login': AuthenticationForm(), 'signup': UserCreationForm(), 'city': city, 'post_form': post_form, 'posts': posts}
+    return render(request, 'cities/detail', context)
         
-# View Profile
-@login_required
+# --- Profile Detail ---
 def profile_detail(request, user_id):
     user = User.objects.get(id=user_id)
     profile_form = Profile_Form()
@@ -44,8 +51,14 @@ def profile_detail(request, user_id):
     context = {'user': user, 'profile_form': profile_form, 'login': AuthenticationForm(), 'signup': Register_Form()}
     return render(request, 'user/profile.html', context)
     
+# --- Post Detail ---
+def posts_detail(request, post_id):
+    post = Post.objects.get(id=post_id)
+    post_form = Post_Form(instance=post)
+    context = {'post': post, 'login': AuthenticationForm(), 'signup': Register_Form(), 'post_form': post_form}
+    return render(request, 'posts/detail.html', context)    
     
-# --- Image Views ---
+# --- Images ---
 
 def showimage(request):
     
@@ -63,7 +76,7 @@ def showimage(request):
               }
     return render(request, 'user/images.html', context)
 
-# --- Signup View ---
+# --- Signup ---
 
 def signup(request):
     error_message = ''
@@ -82,8 +95,7 @@ def signup(request):
     context = {'form': form, 'error_message': error_message}
     return render(request, 'registration/signup.html', context)
 
-
-# --- Login View ---
+# --- Login ---
 
 def login(request):
     username = request.POST['username']
@@ -94,3 +106,19 @@ def login(request):
         return redirect('profile_detail', user_id=user.id)
     else:
         return redirect('/accounts/login')
+
+@login_required 
+def profile_edit(request, user_id):
+    user = User.objects.get(id=user_id)
+    if request.method == 'POST':
+        user_form = User_Form(request.POST, instance=user)
+        profile_form = Profile_Form(request.POST, instance=user.profile)
+        if user_form.is_valid() and profile_form.is_valid():
+            user_form.save()
+            profile_form.save()
+            return redirect('profile_detail', user_id=user.id)
+        else:
+            user_form = User_Form(instance=user)
+            profile_form = Profile_Form(instance=user.profile)
+            context = {'user': user, 'user_form': user_form, 'profile_form': profile_form}
+            return render(request, 'user/edit.html', context)
