@@ -34,13 +34,6 @@
         <span class="text-danger">Wayfarer</span>
       </a>
       <div class="form-inline">
-        <li><a href="{% url 'about' %}">About</a></li>
-        {% if user.is_authenticated %}
-          <li><a href="{% url 'user_index' %}">{{ user.username }}'s Profile</a></li>
-          <li><a href="{% url 'logout' %}">Log Out</a></li>
-        {% else %}
-   
-  
         <!-- Button trigger modal -->
         <a
           class="mr-3 text-white-50"
@@ -113,7 +106,6 @@
           </div>
         </div>
       </div>
-      {% endif %}
     </nav>
     <main>{% block content %} {% endblock %}</main>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.slim.min.js"></script>

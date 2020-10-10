@@ -1,18 +1,17 @@
 from django.shortcuts import render, redirect
 from django.http import HttpResponse, JsonResponse
-from .models import Image, Profile, City, Post, User
-from .forms import Image_Form, City_Form, Post_Form, User_Form, Register_Form, Profile_Form
+from .models import City, Post, Profile, Image
+from .forms import City_Form, Image_Form, Post_Form, Profile_Form, User_Form, Register_Form
 from django.contrib.auth import login, authenticate
 from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
+from django.contrib.auth.models import User
 from django.contrib.auth.decorators import login_required
-
 
 # Create your views here.
 
 # --- Base Views ---
 def home(request):
-    context = {'login': AuthenticationForm(), 'signup': Register_Form()}
-    return render(request, 'home.html', context)
+    return render(request, 'home.html')
 
 def about(request):
     context = {'login': AuthenticationForm(), 'signup': Register_Form()}
@@ -88,7 +87,7 @@ def signup(request):
         profile = Profile.objects.create(user = user, current_city = city_id)
         profile.save()
         login(request, user)
-        return redirect('user_index')
+        return redirect('profile_detail')
       else:
         error_message = 'Invalid sign up - try again'
     form = UserCreationForm()
