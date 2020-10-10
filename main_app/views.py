@@ -14,8 +14,7 @@ def home(request):
     return render(request, 'home.html')
 
 def about(request):
-    context = {'login': AuthenticationForm(), 'signup': Register_Form()}
-    return render(request, 'about.html', context)
+    return render(request, 'about.html')
 
 def api(request):
     return JsonResponse({"status": 200})
