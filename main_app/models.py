@@ -16,6 +16,10 @@ class Image(models.Model):
     def __str__(self):
         return self.name + ": " + str(self.imagefile)
 
+class Profile(models.Model):
+    user = models.OneToOneField(User, on_delete=models.CASCADE)
+    current_city = models.ForeignKey(City, on_delete=models.CASCADE)
+    image = models.ForeignKey(Image, on_delete=models.CASCADE)
 class Post(models.Model):
     title = models.CharField(max_length=200)
     content = models.TextField(max_length=600)
@@ -24,10 +28,7 @@ class Post(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     post_date = models.DateField()
 
-def __str__(self):
-        return self.user
-
-class Profile(models.Model):
-    user = models.OneToOneField(User, on_delete=models.CASCADE)
-    current_city = models.ForeignKey(City, on_delete=models.CASCADE)
-    image = models.ForeignKey(Image, on_delete=models.CASCADE)
+    def __str__(self):
+            return f"{self.user} = {self.city.name} Post: {self.title} created:{self.post_date} \n{self.content}"
+    class Meta:
+        ordering = ['-post_date']
