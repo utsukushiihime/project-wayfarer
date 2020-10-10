@@ -1,9 +1,9 @@
 from django.shortcuts import render, redirect
 from django.http import HttpResponse, JsonResponse
 from .models import Image, Profile, City, Post
-from .forms import Image_Form
-from django.contrib.auth import login
-from django.contrib.auth.forms import UserCreationForm
+from .forms import Image_Form, City_Form, Post_Form, User_Form, Register_Form
+from django.contrib.auth import login, authenticate
+from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
 from django.contrib.auth.decorators import login_required
 
 
@@ -11,19 +11,12 @@ from django.contrib.auth.decorators import login_required
 
 # --- Base Views ---
 def home(request):
-    return render(request, 'home.html')
+    context = {'login': AuthenticationForm(), 'signup': Register_Form()}
+    return render(request, 'home.html', context)
 
 def about(request):
-    return render(request, 'about.html')
-
-def user(request):
-    return render(request, 'user/profile.html')
-
-def profile(request):
-    return render(request, 'user/profile.html')
-
-def index(request):
-    return render(request, 'cities/index.html')
+    context = {'login': AuthenticationForm(), 'signup': Register_Form()}
+    return render(request, 'about.html', context)
 
 def api(request):
     return JsonResponse({"status": 200})
@@ -62,15 +55,17 @@ def showimage(request):
               }
     return render(request, 'user/images.html', context)
 
-
 # --- Signup View ---
 
 def signup(request):
     error_message = ''
     if request.method == 'POST':
-      form = UserCreationForm(request.POST)
+      form = Register_Form(request.POST)
       if form.is_valid():
         user = form.save()
+        city_id = City.objects.get(id=request.POST['current_city'])
+        profile = Profile.objects.create(user = user, current_city = city_id)
+        profile.save()
         login(request, user)
         return redirect('user_index')
       else:
@@ -78,3 +73,16 @@ def signup(request):
     form = UserCreationForm()
     context = {'form': form, 'error_message': error_message}
     return render(request, 'registration/signup.html', context)
+
+
+# --- Login View ---
+
+def login(request):
+    username = request.POST['username']
+    password = request.POST['password']
+    user = authenticate(request, username=username, password=password)
+    if user is not None:
+        login(request, user)
+        return redirect('profile_detail', user_id=user.id)
+    else:
+        return redirect('/accounts/login')
