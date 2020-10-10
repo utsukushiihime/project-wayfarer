@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect
 from django.http import HttpResponse, JsonResponse
 from .models import Image, Profile, City, Post
-from .forms import Image_Form, City_Form, Post_Form, User_Form, Register_Form
+from .forms import Image_Form, City_Form, Post_Form, User_Form, Register_Form, Profile_Form
 from django.contrib.auth import login, authenticate
 from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
 from django.contrib.auth.decorators import login_required
@@ -21,22 +21,30 @@ def about(request):
 def api(request):
     return JsonResponse({"status": 200})
 
+def cities_index(request):
+    if request.method == 'POST':
+        city_form = City_Form(request.POST)
+        if city_form.is_valid():
+            new_city = city_form.save(commit=False)
+            new_city.user = request.user
+            new_city.save()
+            return redirect('cities_index')
+        cities = City.objects.all()
+        city_form = City_Form()
+        context = {'cities': cities, 'city_form': city_form, 'login': AuthenticationForm(), 'signup': UserCreationForm()}
+        return render(request,'cities/index.html', context)
+
         
 # View Profile
 @login_required
-def user_index(request):
-    if request.method == 'POST':
-        user_form = User_Form(request.POST)
-        if user_form.is_valid():
-            new_user = user_form.save(commit=False)
-            new_user.user = request.user
-            # save() to the db
-            new_user.save()
-            return redirect('user_index')
-    users = Profile.objects.filter(user=request.user)
+def profile_detail(request, user_id):
+    user = User.objects.get(id=user_id)
+    profile_form = Profile_Form()
     user_form = User_Form()
-    context = {'user': user, 'user_form': user_form}
+    context = {'user': user, 'profile_form': profile_form, 'login': AuthenticationForm(), 'signup': Register_Form()}
     return render(request, 'user/profile.html', context)
+    
+    
 # --- Image Views ---
 
 def showimage(request):
