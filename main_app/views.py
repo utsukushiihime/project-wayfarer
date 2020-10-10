@@ -58,18 +58,14 @@ def posts_detail(request, post_id):
     return render(request, 'posts/detail.html', context)    
 
 # --- Signup ---
-
 def signup(request):
     error_message = ''
     if request.method == 'POST':
-      form = Register_Form(request.POST)
+      form = UserCreationForm(request.POST)
       if form.is_valid():
         user = form.save()
-        city_id = City.objects.get(id=request.POST['current_city'])
-        profile = Profile.objects.create(user = user, current_city = city_id)
-        profile.save()
         login(request, user)
-        return redirect('profile_detail')
+        return redirect('home')
       else:
         error_message = 'Invalid sign up - try again'
     form = UserCreationForm()
@@ -84,9 +80,9 @@ def login(request):
     user = authenticate(request, username=username, password=password)
     if user is not None:
         login(request, user)
-        return redirect('profile_detail', user_id=user.id)
+        return redirect('home', user_id=user.id)
     else:
-        return redirect('/accounts/login')
+        return redirect('home')
 
 @login_required 
 def profile_edit(request, user_id):
