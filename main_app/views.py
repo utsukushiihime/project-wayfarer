@@ -39,7 +39,7 @@ def user_index(request):
             new_user.user = request.user
             # save() to the db
             new_user.save()
-            return redirect('cats_index')
+            return redirect('user_index')
     users = User_Profile.objects.filter(user=request.user)
     user_form = User_Form()
     context = {'user': user, 'user_form': user_form}
