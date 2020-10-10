@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect
 from django.http import HttpResponse, JsonResponse
-from .models import City, Post, Profile, Image
-from .forms import City_Form, Image_Form, Post_Form, Profile_Form, User_Form, Register_Form
+from .models import City, Post, Profile
+from .forms import City_Form, Post_Form, Profile_Form, User_Form, Register_Form
 from django.contrib.auth import login, authenticate
 from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
 from django.contrib.auth.models import User
@@ -56,24 +56,6 @@ def posts_detail(request, post_id):
     post_form = Post_Form(instance=post)
     context = {'post': post, 'login': AuthenticationForm(), 'signup': Register_Form(), 'post_form': post_form}
     return render(request, 'posts/detail.html', context)    
-    
-# --- Images ---
-
-def showimage(request):
-    
-    lastimage= Image.objects.last()
-
-    imagefile= lastimage.imagefile
-
-
-    form= Image_Form(request.POST or None, request.FILES or None)
-    if form.is_valid():
-        form.save()
-    
-    context= {'imagefile': imagefile,
-              'form': form
-              }
-    return render(request, 'user/images.html', context)
 
 # --- Signup ---
 

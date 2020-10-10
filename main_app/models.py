@@ -9,17 +9,12 @@ class City(models.Model):
 
 def __str__(self):
         return f"{self.name}, {self.country}"
-class Image(models.Model):
-    name= models.CharField(max_length=500)
-    imagefile= models.FileField(upload_to='images/', null=True, verbose_name="")
-
-    def __str__(self):
-        return self.name + ": " + str(self.imagefile)
 
 class Profile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     current_city = models.ForeignKey(City, on_delete=models.CASCADE)
-    image = models.ForeignKey(Image, on_delete=models.CASCADE)
+    image = models.CharField(max_length=250)
+    
 class Post(models.Model):
     title = models.CharField(max_length=200)
     content = models.TextField(max_length=600)

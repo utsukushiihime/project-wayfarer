@@ -1,4 +1,3 @@
-from main_app.views import cities_index
 from django.urls import path, include
 from . import views
 

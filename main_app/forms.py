@@ -3,7 +3,7 @@ from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import User
 from django import forms
 
-from .models import Profile, City, Post, Image
+from .models import Profile, City, Post
 
 class Register_Form(UserCreationForm):
     first_name = forms.CharField()
@@ -35,8 +35,3 @@ class City_Form(ModelForm):
     class Meta:
         model = City
         fields = ['name', 'image', 'country']
-        
-class Image_Form(ModelForm):
-    class Meta:
-        model= Image
-        fields= ['name', 'imagefile']

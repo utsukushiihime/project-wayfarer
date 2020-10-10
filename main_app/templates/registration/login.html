@@ -1,16 +1,6 @@
-  <section class="form-section">
-    <form action="{% url 'login' %}" method="POST">
-      {% csrf_token %}
-      <p>
-        <label for="username">Username</label>
-        <input type="text" name="username" maxlength="20" minlength="2" required>
-      </p>
-      <p>
-        <label for="password">Password</label>
-        <input type="password" name="password" maxlength="20" minlength="7" required>
-      </p>
-      <button type="submit">Login</button>
-      <input type="hidden" name="next" value="{{ next }}">
-    </form>
-  </section>
-
+<form action="{% url 'login' %}" method="POST">
+  {% csrf_token %}
+  {{form.as_p}}
+  <input type="submit" class="btn" value="login">
+  <input type="hidden" name="next" value="{{ next }}">
+</form>
