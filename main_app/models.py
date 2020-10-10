@@ -7,8 +7,8 @@ class City(models.Model):
     image = models.CharField(max_length=200)
     country = models.CharField(max_length=75)
 
-def __str__(self):
-        return f"{self.name}, {self.country}"
+    def __str__(self):
+            return self.name
 
 class Profile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
@@ -24,6 +24,6 @@ class Post(models.Model):
     post_date = models.DateField()
 
     def __str__(self):
-            return f"{self.user} = {self.city.name} Post: {self.title} created:{self.post_date} \n{self.content}"
+            return f"{self.user} = {self.city.name} \nPost: {self.title} \ncreated:{self.post_date} \n{self.content}"
     class Meta:
         ordering = ['-post_date']
