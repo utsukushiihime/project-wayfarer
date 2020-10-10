@@ -1,72 +1,115 @@
 {% load static %}
 <!DOCTYPE html>
 <html lang="en">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta http-equiv="X-UA-Compatible" content="ie=edge">
-<meta name="Description" content="Wayfarer - Experience the nightlife of the city"/>
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.2/css/bootstrap.min.css">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.0/css/all.min.css">
-<link rel="stylesheet" href="{% static 'styles/main.css'%}">
-<title>Wayfarer</title>
-</head>
-<body>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <meta
+      name="Description"
+      content="Wayfarer - Experience the nightlife of the city"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.2/css/bootstrap.min.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.0/css/all.min.css"
+    />
+    <link rel="stylesheet" href="{% static 'styles/main.css'%}" />
+    <title>Wayfarer</title>
+  </head>
+  <body>
     <nav class="navbar navbar-dark bg-dark sticky-top">
-        <a class="navbar-brand" href="#">
-          <img src="{% static 'images/WayfarerLogo4.png' %}" width="30" height="30" class="d-inline-block align-top" alt="" loading="lazy">
-          <span class='text-danger'>Wayfarer</span> 
+      <a class="navbar-brand" href="/">
+        <img
+          src="{% static 'images/WayfarerLogo4.png' %}"
+          width="30"
+          height="30"
+          class="d-inline-block align-top"
+          alt=""
+          loading="lazy"
+        />
+        <span class="text-danger">Wayfarer</span>
+      </a>
+      <div class="form-inline">
+        <!-- Button trigger modal -->
+        <a
+          class="mr-3 text-white-50"
+          data-toggle="modal"
+          data-target="#exampleModal"
+        >
+          Sign In
         </a>
-        <div class="form-inline">
-            <!-- Button trigger modal -->
-<a class ='mr-3 text-white-50' data-toggle="modal" data-target="#exampleModal">
-    Sign In
-</a>
-  
-  <!-- Modal -->
-  <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalLabel">Log In</h5>
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-          </button>
+
+        <!-- Modal -->
+        <div
+          class="modal fade"
+          id="exampleModal"
+          tabindex="-1"
+          aria-labelledby="exampleModalLabel"
+          aria-hidden="true"
+        >
+          <div class="modal-dialog">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Log In</h5>
+                <button
+                  type="button"
+                  class="close"
+                  data-dismiss="modal"
+                  aria-label="Close"
+                >
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+              <div class="modal-body">
+                {% include "registration/login.html" %}
+              </div>
+            </div>
+          </div>
         </div>
-        <div class="modal-body">
-          {% include "registration/login.html" %}
+        <a
+          class="text-white-50"
+          data-toggle="modal"
+          data-target="#exampleModal2"
+        >
+          Sign Up
+        </a>
+
+        <!-- Modal -->
+        <div
+          class="modal fade"
+          id="exampleModal2"
+          tabindex="-1"
+          aria-labelledby="exampleModalLabel"
+          aria-hidden="true"
+        >
+          <div class="modal-dialog">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Sign Up</h5>
+                <button
+                  type="button"
+                  class="close"
+                  data-dismiss="modal"
+                  aria-label="Close"
+                >
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+              <div class="modal-body">
+                {% include "registration/signup.html" %}
+              </div>
+            </div>
+          </div>
         </div>
       </div>
-    </div>
-  </div>
-  <a class ='text-white-50' data-toggle="modal" data-target="#exampleModal2">
-    Sign Up
-</a>
-  
-  <!-- Modal -->
-  <div class="modal fade" id="exampleModal2" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalLabel">Sign Up</h5>
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-          </button>
-        </div>
-        <div class="modal-body">
-          {% include "registration/signup.html" %}
-        </div>
-      </div>
-    </div>
-  </div>
-        </div>
-      </nav>
-  <main>
-    {% block content %}
-    {% endblock %}
-  </main>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.slim.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.1/umd/popper.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.2/js/bootstrap.min.js"></script>
-</body>
+    </nav>
+    <main>{% block content %} {% endblock %}</main>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.slim.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.1/umd/popper.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.2/js/bootstrap.min.js"></script>
+  </body>
 </html>

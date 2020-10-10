@@ -7,7 +7,7 @@ from django.contrib.auth.models import User
 
 class Image(models.Model):
     name= models.CharField(max_length=500)
-    videofile= models.FileField(upload_to='images/', null=True, verbose_name="")
+    imagefile= models.FileField(upload_to='images/', null=True, verbose_name="")
 
     def __str__(self):
         return self.name + ": " + str(self.imagefile)
@@ -20,7 +20,7 @@ class Post(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
 
 def __str__(self):
-        return self.user_name
+        return self.user
 
 class City(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
@@ -28,7 +28,7 @@ class City(models.Model):
     city_name = models.CharField(max_length=75)
 
 def __str__(self):
-        return self.user_name
+        return self.user
 
 
 class User_Profile(models.Model):
