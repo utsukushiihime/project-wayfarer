@@ -1,6 +1,8 @@
 {% extends 'base.html' %}
 {% load static %}
 {% block content %}
+{% if user.is_authenticated %}
+
 <div class="container">
     <div class='row'>
         <div class='col-5'>{{ user.username }}
@@ -28,7 +30,7 @@
         </div>
         <div class='col-7'>
             Posts
-            <!-- <div class="col">
+            <div class="col">
                 {% for user in users %}
                 <div class="card">
                 <a href="{% url 'detail' user.id %}">
@@ -38,7 +40,7 @@
                 </a>
                 </div>
                 {% endfor %}
-            </div> -->
+            </div>
             <ul class="nav flex-column pills">
                 <li class="nav-item">
                     <img src='https://i.imgur.com/Xf2FkIK.png?3' alt="">
@@ -60,4 +62,9 @@
         </div>
     </div>
 </div>
+{% else %}
+<div class="container mt-5">
+    <h2>Please login to view your profile</h2>
+</div>
+{% endif %}
 {% endblock %}
