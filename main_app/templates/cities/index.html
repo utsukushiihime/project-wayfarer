@@ -8,7 +8,8 @@
           <ul class="nav flex-column nav-pills">
             {% for city in cities %}
             <li class="nav-item">
-              <a class="nav-link" href="{{ city.name }}">{{ city.name }}</a>
+              <a class="nav-link" href="{{ city.id }}">{{ city.name }}, {{ city.country }}</a>
+              <img class="pic" src="{{ city.image }}" alt="">
           </li>
           {% endfor %}
           </ul>
@@ -46,8 +47,9 @@
                                       </button>
                                       <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
                                         {% for city in cities  %}
-                                          
-                                        <a class="dropdown-item" href="{{ city.name }}">{{ city.name }}</a>
+                                       
+                                        <a class="dropdown-item" href="{{ city.id }}">{{ city.name }}</a>
+
                                         {% endfor %}
                                       </div>
                                     </div>
@@ -69,10 +71,12 @@
             {% for post in posts  %}
               
             <li class="nav-item">
-              <a class="nav-link" href="{{ post.title }}">{{ post.title }}</a>
+              <a class="nav-link" href="{{ post.id }}">{{ post.title }}</a>
               <p>{{ post.content }}</p>
             </li>
             {% endfor %}
+
+            
           </ul>
       </div>
   </div>

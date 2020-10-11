@@ -38,19 +38,20 @@
   }
   
   .bg-secondary {
-      height: 100vh;
       background-image: linear-gradient(to bottom right, #271419, #322024, #160E18, #241E31, #181525, #211A2A, #1E1A2D, #13162D, #0D0F20, #0F1227, #0B0E1D) !important;
-  }
+      background-size: cover;
+      background-attachment: scroll;
+    }
   
-  .pic {
-      border-radius: 20%;
-      max-height: 200px;
-      max-width: 200px;
-      width: 300px;
-      height: 300px;
-      object-fit: cover;
-  }
-  
+    .pic {
+        border-radius: 20%;
+        max-height: 130px;
+        max-width: 130px;
+        width: 130px;
+        height: 130px;
+        object-fit: cover;
+    }
+    
   .card {
       background: rgba(0, 0, 0, 0.2);
   }

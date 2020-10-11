@@ -22,35 +22,38 @@ def api(request):
 def profile(request):
     return render(request, 'profile/detail.html')
 
+
+# --- City Index ---
+
 # FIXME Adding data all to view for testing
-def cities(request):
+def cities_index(request):
     profile = Profile.objects.all()
     cities = City.objects.all()
     post = Post.objects.all()
     context = {'cities': cities, 'post': post, 'profile': profile}
     return render(request, 'cities/index.html', context)
 
-
-# --- City Index ---
-def cities_index(request):
-    if request.method == 'POST':
-        city_form = City_Form(request.POST)
-        if city_form.is_valid():
-            new_city = city_form.save(commit=False)
-            new_city.user = request.user
-            new_city.save()
-            return redirect('cities_index')
-        cities = City.objects.all()
-        city_form = City_Form()
-        context = {'cities': cities, 'city_form': city_form, 'login': AuthenticationForm(), 'signup': UserCreationForm()}
-        return render(request,'cities/index.html', context)
+    # if request.method == 'POST':
+    #     city_form = City_Form(request.POST)
+    #     if city_form.is_valid():
+    #         new_city = city_form.save(commit=False)
+    #         new_city.user = request.user
+    #         new_city.save()
+    #         return redirect('cities_index')
+    #     cities = City.objects.all()
+    #     profile = Profile.objects.all()  
+    #     post = Post.objects.all()
+    #     city_form = City_Form()
+    #     context = {'cities': cities, 'city_form': city_form, 'profile': profile, 'post': post, 'login': AuthenticationForm(), 'signup': UserCreationForm()}
+        # return render(request,'cities/index.html', context)
 
 # --- City Detail ---
 def cities_detail(request, city_id):
     city = City.objects.get(id=city_id)
     posts = Post.objects.filter(city_id=city.id)
+    post = Post.objects.all()
     post_form = Post_Form()
-    context = {'login': AuthenticationForm(), 'signup': UserCreationForm(), 'city': city, 'post_form': post_form, 'posts': posts}
+    context = {'login': AuthenticationForm(), 'post': post, 'signup': UserCreationForm(), 'city': city, 'post_form': post_form, 'posts': posts}
     return render(request, 'cities/detail', context)
         
 # --- Profile Detail ---
