@@ -42,7 +42,9 @@
 <div class="text-center pt-3 pb-2">
   {% if user.is_authenticated %}
   <h1>Welcome {{ user.first_name }}</h1>
-  <img src="{{ user.profile.image }}" />
+  <img class="img-thumbnail" src="{{ user.profile.image }}" width="250px" />
+  Current City: {{ user.profile.current_city }} 
+  
   {% endif %}
 
   <h3>Wayfarer is...</h3>

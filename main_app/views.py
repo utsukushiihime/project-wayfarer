@@ -19,6 +19,9 @@ def about(request):
 def api(request):
     return JsonResponse({"status": 200})
 
+def profile(request):
+    return render(request, 'profile/detail.html')
+
 # --- City Index ---
 def cities_index(request):
     if request.method == 'POST':
@@ -46,8 +49,8 @@ def profile_detail(request, user_id):
     user = User.objects.get(id=user_id)
     profile_form = Profile_Form()
     user_form = User_Form()
-    context = {'user': user, 'profile_form': profile_form, 'login': AuthenticationForm(), 'signup': Register_Form()}
-    return render(request, 'user/profile.html', context)
+    context = {'user': user, 'profile_form': profile_form, 'login': AuthenticationForm(), 'signup': AuthenticationForm()}
+    return render(request, 'profile/detail.html', context)
     
 # --- Post Detail ---
 def posts_detail(request, post_id):
