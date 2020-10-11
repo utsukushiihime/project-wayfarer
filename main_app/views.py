@@ -22,6 +22,15 @@ def api(request):
 def profile(request):
     return render(request, 'profile/detail.html')
 
+# FIXME Adding data all to view for testing
+def cities(request):
+    profile = Profile.objects.all()
+    cities = City.objects.all()
+    post = Post.objects.all()
+    context = {'cities': cities, 'post': post, 'profile': profile}
+    return render(request, 'cities/index.html', context)
+
+
 # --- City Index ---
 def cities_index(request):
     if request.method == 'POST':
