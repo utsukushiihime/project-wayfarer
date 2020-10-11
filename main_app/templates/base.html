@@ -18,7 +18,11 @@
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.0/css/all.min.css"
     />
     <link rel="stylesheet" href="{% static 'styles/main.css'%}" />
+<<<<<<< HEAD
     <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
+=======
+    <script src="{% static 'scripts/app.js' %}" defer></script>
+>>>>>>> submaster
     <title>Wayfarer</title>
   </head>
   <body>
@@ -35,6 +39,11 @@
         <span class="text-danger">Wayfarer</span>
       </a>
       <div class="form-inline">
+        <li><a href="{% url 'about' %}">About</a></li>
+        {% if user.is_authenticated %}
+        <li><a href="{% url 'logout' %}">Log Out</a></li>
+        {% else %}
+
         <!-- Button trigger modal -->
         <a
           class="mr-3 text-danger"
@@ -107,6 +116,7 @@
           </div>
         </div>
       </div>
+      {% endif %}
     </nav>
     <main>{% block content %} {% endblock %}</main>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.slim.min.js"></script>

@@ -1,21 +1,15 @@
- /*  */
-
-#headerreg {
-    color: white;
-}
-
-
 /*  Bootstrap Overrides */
 
 .modal-backdrop {
-    position:unset !important;
-  }
+  position: unset !important;
+}
 
 .carousel-item {
-    max-height: 400px !important;
+  max-height: 400px !important;
 }
 
 .text-danger {
+<<<<<<< HEAD
     color: white !important;
     font: Roboto !important;
 }
@@ -63,3 +57,7 @@
 
 
 
+=======
+  color: #9a222e;
+}
+>>>>>>> submaster

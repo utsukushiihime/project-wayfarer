@@ -14,11 +14,13 @@ def home(request):
     return render(request, 'home.html')
 
 def about(request):
-    context = {'login': AuthenticationForm(), 'signup': Register_Form()}
-    return render(request, 'about.html', context)
+    return render(request, 'about.html')
 
 def api(request):
     return JsonResponse({"status": 200})
+
+def profile(request):
+    return render(request, 'profile/detail.html')
 
 # --- City Index ---
 def cities_index(request):
@@ -47,8 +49,8 @@ def profile_detail(request, user_id):
     user = User.objects.get(id=user_id)
     profile_form = Profile_Form()
     user_form = User_Form()
-    context = {'user': user, 'profile_form': profile_form, 'login': AuthenticationForm(), 'signup': Register_Form()}
-    return render(request, 'user/profile.html', context)
+    context = {'user': user, 'profile_form': profile_form, 'login': AuthenticationForm(), 'signup': UserCreationForm(), 'user_form': user_form}
+    return render(request, 'profile/detail.html', context)
     
 # --- Post Detail ---
 def posts_detail(request, post_id):
@@ -58,23 +60,19 @@ def posts_detail(request, post_id):
     return render(request, 'posts/detail.html', context)    
 
 # --- Signup ---
-
 def signup(request):
-    error_message = ''
     if request.method == 'POST':
-      form = Register_Form(request.POST)
-      if form.is_valid():
-        user = form.save()
-        city_id = City.objects.get(id=request.POST['current_city'])
-        profile = Profile.objects.create(user = user, current_city = city_id)
-        profile.save()
-        login(request, user)
-        return redirect('profile_detail')
-      else:
-        error_message = 'Invalid sign up - try again'
-    form = UserCreationForm()
-    context = {'form': form, 'error_message': error_message}
-    return render(request, 'registration/signup.html', context)
+        form = UserCreationForm(request.POST)
+        if form.is_valid():
+            form.save()
+            username = form.cleaned_data.get('username')
+            raw_password = form.cleaned_data.get('password1')
+            user = authenticate(username=username, password=raw_password)
+            login(request, user)
+            return redirect('home')
+    else:
+        form = UserCreationForm()
+    return render(request, 'registration/signup.html', {'form': form})
 
 # --- Login ---
 
@@ -84,9 +82,9 @@ def login(request):
     user = authenticate(request, username=username, password=password)
     if user is not None:
         login(request, user)
-        return redirect('profile_detail', user_id=user.id)
+        return redirect('home', user_id=user.id)
     else:
-        return redirect('/accounts/login')
+        return redirect('home')
 
 @login_required 
 def profile_edit(request, user_id):

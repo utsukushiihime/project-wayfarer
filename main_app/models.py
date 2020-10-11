@@ -15,6 +15,9 @@ class Profile(models.Model):
     current_city = models.ForeignKey(City, on_delete=models.CASCADE)
     image = models.CharField(max_length=250)
     
+    def __str__(self):
+       return f"{self.user.first_name} {self.user.last_name}"
+    
 class Post(models.Model):
     title = models.CharField(max_length=200)
     content = models.TextField(max_length=600)
@@ -24,6 +27,6 @@ class Post(models.Model):
     post_date = models.DateField()
 
     def __str__(self):
-            return f"{self.user} = {self.city.name} \nPost: {self.title} \ncreated:{self.post_date} \n{self.content}"
+            return f"Posted: {self.post_date} - Author: {self.user.first_name}, posted an article about {self.city.name}."
     class Meta:
         ordering = ['-post_date']
