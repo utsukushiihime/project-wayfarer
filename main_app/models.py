@@ -2,41 +2,28 @@ from django.db import models
 from django.contrib.auth.models import User
 
 # # Create your models here.
-
-
-
-class Image(models.Model):
-    name= models.CharField(max_length=500)
-    imagefile= models.FileField(upload_to='images/', null=True, verbose_name="")
-
-    def __str__(self):
-        return self.name + ": " + str(self.imagefile)
-
-
-class Post(models.Model):
-    post_title = models.CharField(max_length=200)
-    post_city = models.CharField(max_length=75)
-    post_content = models.TextField(max_length=600)
-    user = models.ForeignKey(User, on_delete=models.CASCADE)
-
-def __str__(self):
-        return self.user
-
 class City(models.Model):
-    user = models.ForeignKey(User, on_delete=models.CASCADE)
-    post = models.ForeignKey(Post, on_delete=models.CASCADE)
-    city_name = models.CharField(max_length=75)
-
-def __str__(self):
-        return self.user
-
-
-class User_Profile(models.Model):
-    user_name = models.CharField(max_length=150)
-    user_city = models.CharField(max_length=150)
-    join_date = models.DateField('Join Date')
-    post = models.ManyToManyField(Post)
-    #image = models.ForeignKey(Image, on_delete=models.CASCADE)
+    name = models.CharField(max_length=75)
+    image = models.CharField(max_length=200)
+    country = models.CharField(max_length=75)
 
     def __str__(self):
-        return self.user_name
+            return self.name
+
+class Profile(models.Model):
+    user = models.OneToOneField(User, on_delete=models.CASCADE)
+    current_city = models.ForeignKey(City, on_delete=models.CASCADE)
+    image = models.CharField(max_length=250)
+    
+class Post(models.Model):
+    title = models.CharField(max_length=200)
+    content = models.TextField(max_length=600)
+    image = models.CharField(max_length=300)
+    city = models.ForeignKey(City, on_delete=models.CASCADE)
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    post_date = models.DateField()
+
+    def __str__(self):
+            return f"{self.user} = {self.city.name} \nPost: {self.title} \ncreated:{self.post_date} \n{self.content}"
+    class Meta:
+        ordering = ['-post_date']
