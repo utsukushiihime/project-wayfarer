@@ -22,9 +22,32 @@ def api(request):
 def profile(request):
     return render(request, 'profile/detail.html')
 
+# --- Posts Index ---
+@login_required
+def posts_index(request):
+    if request.method == 'POST':
+        post_form = Post_Form(request.POST)
+        if post_form.is_valid():
+            # save(commit=False) will just make a copy/instance of the model
+            new_post = post_form.save(commit=False)
+            new_post.user = request.user
+            # save() to the db
+            new_post.save()
+            return redirect('posts_index')
+    post = Post.objects.filter(user=request.user)
+    posts = Post.objects.all()
+    post_form = Post_Form()
+    context = {'post': post, 'post_form': post_form, 'posts': posts}
+    return render(request, 'posts/index.html', context)
+
+# --- Post Detail ---
+@login_required
+def posts_detail(request, post_id):
+    post = Post.objects.get(id=post_id)
+    context = {'post': post}
+    return render(request, 'posts/detail.html', context)
 
 # --- City Index ---
-
 # FIXME Adding data all to view for testing
 def cities_index(request):
     profile = Profile.objects.all()
@@ -63,13 +86,6 @@ def profile_detail(request, user_id):
     user_form = User_Form()
     context = {'user': user, 'profile_form': profile_form, 'login': AuthenticationForm(), 'signup': UserCreationForm(), 'user_form': user_form}
     return render(request, 'profile/detail.html', context)
-    
-# --- Post Detail ---
-def posts_detail(request, post_id):
-    post = Post.objects.get(id=post_id)
-    post_form = Post_Form(instance=post)
-    context = {'post': post, 'login': AuthenticationForm(), 'signup': Register_Form(), 'post_form': post_form}
-    return render(request, 'posts/detail.html', context)    
 
 # --- Signup ---
 def signup(request):

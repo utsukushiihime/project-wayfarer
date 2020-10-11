@@ -1,0 +1,29 @@
+{% extends 'base.html' %} 
+{% load static %} 
+{% block content %}
+<div class="container">
+    <h1>{{ user.username }}'s Post List</h1>
+    <div class="row mt-5">
+
+        <div class="col">
+            {% for post in posts %}
+            <a href="{% url 'posts_detail' post.id %}">
+            <span class="card-title">{{ post.title }}</span>
+            </a>
+            <h4>{{ post.city }}</h4>
+            <p>Author: {{ post.user }}</p>
+            <p>Post Date: {{ post.date }}</p>
+            <p>Content: {{ post.content }}</p>
+            <img class="thumbnail" src="{{ post.image }}" alt="{{ post.city }}" width="250px">
+            {% endfor %}
+    
+          </div>
+
+      <div class="col">
+        <form action="{% url 'posts_index' %}" method="POST">
+          {% csrf_token %} {{ post_form.as_p }}
+          <input type="submit" class="btn" value="Add Post" />
+        </form>
+      </div>
+    </div>
+{% endblock %}
