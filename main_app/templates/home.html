@@ -1,9 +1,11 @@
-{% extends 'base.html' %}
-{% load static %}
-{% block content %}
+{% extends 'base.html' %} {% load static %} {% block content %}
 <div id="carouselExampleCaptions" class="carousel slide" data-ride="carousel">
   <ol class="carousel-indicators">
-    <li data-target="#carouselExampleCaptions" data-slide-to="0" class="active"></li>
+    <li
+      data-target="#carouselExampleCaptions"
+      data-slide-to="0"
+      class="active"
+    ></li>
     <li data-target="#carouselExampleCaptions" data-slide-to="1"></li>
     <li data-target="#carouselExampleCaptions" data-slide-to="2"></li>
   </ol>
@@ -18,52 +20,63 @@
       <img src={% static 'images/paris.jpg' %} class="d-block w-100" alt="...">
     </div>
   </div>
-  <a class="carousel-control-prev" href="#carouselExampleCaptions" role="button" data-slide="prev">
+  <a
+    class="carousel-control-prev"
+    href="#carouselExampleCaptions"
+    role="button"
+    data-slide="prev"
+  >
     <span class="carousel-control-prev-icon" aria-hidden="true"></span>
     <span class="sr-only">Previous</span>
   </a>
-  <a class="carousel-control-next" href="#carouselExampleCaptions" role="button" data-slide="next">
+  <a
+    class="carousel-control-next"
+    href="#carouselExampleCaptions"
+    role="button"
+    data-slide="next"
+  >
     <span class="carousel-control-next-icon" aria-hidden="true"></span>
     <span class="sr-only">Next</span>
   </a>
 </div>
-<div class='text-center pt-3 pb-2'>
-  
+<div class="text-center pt-3 pb-2">
   {% if user.is_authenticated %}
   <h1>Welcome {{ user.first_name }}</h1>
+  <img src="{{ user.profile.image }}" />
   {% endif %}
-    
 
-    <h3>Wayfarer is...</h3>
+  <h3>Wayfarer is...</h3>
 </div>
-<div class='container'>
-<div class="row">
+<div class="container">
+  <div class="row">
     <div class="col mx-2">
       <h3>Paris</h3>
-      <p>Lorem Ipsum is simply dummy text of the printing and 
-        typesetting industry. Lorem Ipsum has been the industry's 
-        standard dummy text ever since the 1500s, when an unknown 
-        printer took a galley of type and scrambled it to make a 
-        type specimen book.</p>
+      <p>
+        Lorem Ipsum is simply dummy text of the printing and typesetting
+        industry. Lorem Ipsum has been the industry's standard dummy text ever
+        since the 1500s, when an unknown printer took a galley of type and
+        scrambled it to make a type specimen book.
+      </p>
     </div>
     <div class="col mx-2">
       <h3>Melbourne</h3>
-      <p>Lorem Ipsum is simply dummy text of the printing and 
-        typesetting industry. Lorem Ipsum has been the industry's 
-        standard dummy text ever since the 1500s, when an unknown 
-        printer took a galley of type and scrambled it to make a 
-        type specimen book.</p>
+      <p>
+        Lorem Ipsum is simply dummy text of the printing and typesetting
+        industry. Lorem Ipsum has been the industry's standard dummy text ever
+        since the 1500s, when an unknown printer took a galley of type and
+        scrambled it to make a type specimen book.
+      </p>
     </div>
     <div class="col mx-2">
       <h3>Toronto</h3>
-      <p>Lorem Ipsum is simply dummy text of the printing and 
-        typesetting industry. Lorem Ipsum has been the industry's 
-        standard dummy text ever since the 1500s, when an unknown 
-        printer took a galley of type and scrambled it to make a 
-        type specimen book.</p>
+      <p>
+        Lorem Ipsum is simply dummy text of the printing and typesetting
+        industry. Lorem Ipsum has been the industry's standard dummy text ever
+        since the 1500s, when an unknown printer took a galley of type and
+        scrambled it to make a type specimen book.
+      </p>
     </div>
   </div>
 </div>
-
 
 {% endblock %}
