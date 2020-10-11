@@ -3,28 +3,19 @@
 {% block content %}
 {% if user.is_authenticated %}
 
-<div class="container">
-    <div class='row'>
-        <div class='col-5'>{{ user.username }}
+<div class="container mt-5">
+    <h4>Welcome {{ user.first_name }}</h4>
+    <div class='row bg-dark text-white pt-5 pb-5 px-2'>
+        <div class='col-5'>Username: {{ user.username }}
             <ul class="nav flex-column">
                 <li>
                     <img class="img-thumbnail" src="{{ user.profile.image }}" width="250px" />
                 </li>
                 <li>
-                    <a>{{ user.date_joined }}</a>
+                    Date Joined: {{ user.date_joined }}
                 </li>
                 <li>
-                    <!-- TODO add city auto populate when typing -->
-                    <form action="user/city" method="post">
-                        input:<div class="form-group">
-                        <label for=""></label>
-                        <input type="text" name="" id="" class="form-control" placeholder="What's your city?" aria-describedby="helpId">
-                        <small id="helpId" class="text-muted">Input your current city.</small>
-                        </div>
-                    </form>
-                </li>
-                <li>
-                    <img src="https://i.imgur.com/Xf2FkIK.png?3" alt="">
+                    Current City: {{ user.profile.current_city }}
                 </li>
             </ul>
         </div>
