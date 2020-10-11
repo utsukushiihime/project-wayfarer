@@ -37,10 +37,9 @@
       <div class="form-inline">
         <li><a href="{% url 'about' %}">About</a></li>
         {% if user.is_authenticated %}
-          <li><a href="{% url 'logout' %}">Log Out</a></li>
+        <li><a href="{% url 'logout' %}">Log Out</a></li>
         {% else %}
-   
-  
+
         <!-- Button trigger modal -->
         <a
           class="mr-3 text-white-50"

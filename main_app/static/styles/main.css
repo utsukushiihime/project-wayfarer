@@ -1,22 +1,13 @@
-body {
-    background: #dedede;
-}
-.page-wrap {
-    min-height: 100vh;
-}
-
 /*  Bootstrap Overrides */
 
 .modal-backdrop {
-    position:unset !important;
-  }
+  position: unset !important;
+}
 
 .carousel-item {
-    max-height: 400px !important;
+  max-height: 400px !important;
 }
 
 .text-danger {
-    color: #9a222e;
+  color: #9a222e;
 }
-
-

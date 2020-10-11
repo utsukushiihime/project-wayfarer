@@ -58,18 +58,18 @@ def posts_detail(request, post_id):
 
 # --- Signup ---
 def signup(request):
-    error_message = ''
     if request.method == 'POST':
-      form = UserCreationForm(request.POST)
-      if form.is_valid():
-        user = form.save()
-        login(request, user)
-        return redirect('home')
-      else:
-        error_message = 'Invalid sign up - try again'
-    form = UserCreationForm()
-    context = {'form': form, 'error_message': error_message}
-    return render(request, '404.html', context)
+        form = UserCreationForm(request.POST)
+        if form.is_valid():
+            form.save()
+            username = form.cleaned_data.get('username')
+            raw_password = form.cleaned_data.get('password1')
+            user = authenticate(username=username, password=raw_password)
+            login(request, user)
+            return redirect('home')
+    else:
+        form = UserCreationForm()
+    return render(request, 'registration/signup.html', {'form': form})
 
 # --- Login ---
 
