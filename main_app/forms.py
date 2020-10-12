@@ -23,7 +23,7 @@ class User_Form(ModelForm):
 class Profile_Form(ModelForm):
     class Meta:
         model = Profile
-        fields = ['current_city']
+        fields = ['user', 'current_city', 'image']
 
 class Post_Form(ModelForm):
 
