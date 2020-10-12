@@ -3,6 +3,7 @@
 {% block content %}
 {% if user.is_authenticated %}
 <div class="container mt-5">
+
     <form action="{% url 'profile_edit' user.id %}" method="POST">
         {% csrf_token %}
         {{ form.as_p }}
@@ -22,6 +23,9 @@
                     Current City: {{ user.profile.city }}
                 </li>
             </ul>
+            <div class="card-action">
+                <a class="btn red text-white" href="{% url 'profile_delete' user.id %}">Delete</a>
+            </div>
         </div>
         <div class='col-7'>
             Posts
@@ -61,5 +65,3 @@
 <div class="container mt-5">
     <h2>Please login to view your profile</h2>
 </div>
-{% endif %}
-{% endblock %}
