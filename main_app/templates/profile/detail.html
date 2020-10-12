@@ -3,15 +3,14 @@
 {% block content %}
 {% if user.is_authenticated %}
 <div class="container mt-5">
-<<<<<<< HEAD
-=======
-
->>>>>>> submaster
     <form action="{% url 'profile_edit' user.id %}" method="POST">
         {% csrf_token %}
         {{ form.as_p }}
         <input class="btn" type="submit" value="Update {{user.id }}">
       </form>
+      <div class="card-action">
+        <a class="btn red" href="{% url 'profile_delete' user.id %}">Delete</a>
+    </div>
     <h4>Welcome {{ user.first_name }}</h4>
     <div class='row bg-dark text-white pt-5 pb-5 px-2'>
         <div class='col-5'>Username: {{ user.username }}
@@ -26,9 +25,6 @@
                     Current City: {{ user.profile.city }}
                 </li>
             </ul>
-            <div class="card-action">
-                <a class="btn red text-white" href="{% url 'profile_delete' user.id %}">Delete</a>
-            </div>
         </div>
         <div class='col-7'>
             Posts
@@ -68,3 +64,5 @@
 <div class="container mt-5">
     <h2>Please login to view your profile</h2>
 </div>
+{% endif %}
+{% endblock %}

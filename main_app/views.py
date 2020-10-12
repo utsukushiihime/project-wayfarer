@@ -77,7 +77,7 @@ def cities_detail(request, city_id):
     post = Post.objects.all()
     post_form = Post_Form()
     context = {'login': AuthenticationForm(), 'post': post, 'signup': UserCreationForm(), 'city': city, 'post_form': post_form, 'posts': posts}
-    return render(request, 'cities/detail', context)
+    return render(request, 'cities/detail.html', context)
         
 # --- Profile Detail ---
 def profile_detail(request, user_id):
