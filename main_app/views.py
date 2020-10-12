@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect
 from django.http import HttpResponse, JsonResponse
 from .models import City, Post, Profile
-from .forms import City_Form, Post_Form, Profile_Form, User_Form, Register_Form
+from .forms import Post_Form, Profile_Form, User_Form, Register_Form
 from django.contrib.auth import login, authenticate
 from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
 from django.contrib.auth.models import User
@@ -96,9 +96,10 @@ def profile_delete(request, user_id):
     return redirect("home")
 
 # --- Signup ---
+# FIXME create user profile on signup
 def signup(request):
     if request.method == 'POST':
-        form = UserCreationForm(request.POST)
+        form = Register_Form(request.POST)
         if form.is_valid():
             form.save()
             username = form.cleaned_data.get('username')
@@ -106,9 +107,22 @@ def signup(request):
             user = authenticate(username=username, password=raw_password)
             login(request, user)
             return redirect('home')
+
+def signup(request):
+  error_message = ''
+  if request.method == 'POST':
+    form = UserCreationForm(request.POST)
+    if form.is_valid():
+      user = form.save()
+      return redirect('login')
     else:
-        form = UserCreationForm()
-    return render(request, 'registration/signup.html', {'form': form})
+      error_message = 'Invalid sign up - try again'
+  form = UserCreationForm()
+  context = {'form': form, 'error_message': error_message}
+  return render(request, 'registration/signup.html', context)
+
+
+
 
 # --- Login ---
 
@@ -126,14 +140,14 @@ def login(request):
 def profile_edit(request, user_id):
     user = User.objects.get(id=user_id)
     if request.method == 'POST':
-        user_form = User_Form(request.POST, instance=user)
+        # user_form = User_Form(request.POST, instance=user)
         profile_form = Profile_Form(request.POST, instance=user.profile)
-        if user_form.is_valid() and profile_form.is_valid():
-            user_form.save()
+        if profile_form.is_valid() and profile_form.is_valid():
             profile_form.save()
+            # user_form.save()
             return redirect('profile_detail', user_id=user.id)
         else:
             user_form = User_Form(instance=user)
             profile_form = Profile_Form(instance=user.profile)
             context = {'user': user, 'user_form': user_form, 'profile_form': profile_form}
-            return render(request, 'user/edit.html', context)
+            return render(request, 'profile/edit.html', context)
