@@ -1,5 +1,9 @@
 <form action="{% url 'profile_edit' user.id %}" method="POST">
     {% csrf_token %}
     {{ profile_form.as_p }}
+<<<<<<< HEAD
+    <input class="btn btn-danger" type="submit" value="Update {{user.name }}">
+=======
     <input class="btn" type="submit" value="Update {{user.name }}">
+>>>>>>> submaster
   </form>
