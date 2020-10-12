@@ -8,7 +8,6 @@ from .models import Profile, City, Post
 
     
 class Register_Form(UserCreationForm):
-    # city = forms.CharField(required=True)
     
     class Meta:
         model = User
@@ -29,11 +28,6 @@ class Register_Form(UserCreationForm):
                 'class': 'form-control'
                 }
             ),
-        # 'city': forms.TextInput(
-        #     attrs={
-        #         'class': 'form-control'
-        #     }
-        #     ),
         'email': forms.EmailInput(
             attrs={
                 'class': 'form-control'
@@ -52,14 +46,6 @@ class Register_Form(UserCreationForm):
         
         }
 
-
-
-    # def save(self, commit=True):
-    #     user = super(Register_Form, self).save(commit=False)
-    #     user.current_city = self.cleaned_data["city"]
-    #     if commit:
-    #         user.save()
-    #     return user
         
 class User_Form(ModelForm):
     class Meta:

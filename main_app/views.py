@@ -56,20 +56,6 @@ def cities_index(request):
     context = {'cities': cities, 'post': post, 'profile': profile}
     return render(request, 'cities/index.html', context)
 
-    # if request.method == 'POST':
-    #     city_form = City_Form(request.POST)
-    #     if city_form.is_valid():
-    #         new_city = city_form.save(commit=False)
-    #         new_city.user = request.user
-    #         new_city.save()
-    #         return redirect('cities_index')
-    #     cities = City.objects.all()
-    #     profile = Profile.objects.all()  
-    #     post = Post.objects.all()
-    #     city_form = City_Form()
-    #     context = {'cities': cities, 'city_form': city_form, 'profile': profile, 'post': post, 'login': AuthenticationForm(), 'signup': UserCreationForm()}
-        # return render(request,'cities/index.html', context)
-
 # --- City Detail ---
 def cities_detail(request, city_id):
     city = City.objects.get(id=city_id)
@@ -77,7 +63,7 @@ def cities_detail(request, city_id):
     post = Post.objects.all()
     post_form = Post_Form()
     context = {'login': AuthenticationForm(), 'post': post, 'signup': UserCreationForm(), 'city': city, 'post_form': post_form, 'posts': posts}
-    return render(request, 'cities/detail', context)
+    return render(request, 'cities/detail.html', context)
         
 # --- Profile Detail ---
 def profile_detail(request, user_id):
@@ -95,18 +81,6 @@ def profile_delete(request, user_id):
     User.objects.get(id=user_id).delete()
     return redirect("home")
 
-# --- Signup ---
-# FIXME create user profile on signup
-# def signup(request):
-#     if request.method == 'POST':
-#         form = Register_Form(request.POST)
-#         if form.is_valid():
-#             form.save()
-#             username = form.cleaned_data.get('username')
-#             raw_password = form.cleaned_data.get('password1')
-#             user = authenticate(username=username, password=raw_password)
-#             login(request, user)
-#             return redirect('home')
 
 def signup(request):
   error_message = ''
