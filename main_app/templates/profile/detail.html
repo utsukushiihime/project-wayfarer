@@ -29,7 +29,7 @@
         <div class='col-7'>
             Posts
             <div class="col">
-                {% for user in users %}
+                {% for post in posts %}
                 <div class="card">
                 <a href="{% url 'detail' user.id %}">
                     <div class="card-content">
@@ -39,24 +39,6 @@
                 </div>
                 {% endfor %}
             </div>
-            <ul class="nav flex-column pills">
-                <li class="nav-item">
-                    <img src='https://i.imgur.com/Xf2FkIK.png?3' alt="">
-                    <a>Lorem Ipsum</a>
-                </li>
-                <li class="nav-item">
-                    <img src='https://i.imgur.com/Xf2FkIK.png?3' alt="">
-                    <a>Lorem Ipsum</a>
-                </li>
-                <li class="nav-item">
-                    <img src='https://i.imgur.com/Xf2FkIK.png?3' alt="">
-                    <a>Lorem Ipsum</a>
-                </li>
-                <li class="nav-item">
-                    <img src='https://i.imgur.com/Xf2FkIK.png?3' alt="">
-                    <a>Lorem Ipsum</a>
-                </li>
-            </ul>
         </div>
     </div>
 </div>
