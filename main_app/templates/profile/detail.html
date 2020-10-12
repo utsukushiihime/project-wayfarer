@@ -4,6 +4,12 @@
 {% if user.is_authenticated %}
 
 <div class="container mt-5">
+
+    <form action="{% url 'profile_edit' user.id %}" method="POST">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <input class="btn" type="submit" value="Update {{user.id }}">
+      </form>
     <h4>Welcome {{ user.first_name }}</h4>
     <div class='row bg-dark text-white pt-5 pb-5 px-2'>
         <div class='col-5'>Username: {{ user.username }}
@@ -15,7 +21,7 @@
                     Date Joined: {{ user.date_joined }}
                 </li>
                 <li>
-                    Current City: {{ user.profile.current_city }}
+                    Current City: {{ user.profile.city }}
                 </li>
             </ul>
         </div>
