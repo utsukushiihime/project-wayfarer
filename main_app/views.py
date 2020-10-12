@@ -97,28 +97,35 @@ def profile_delete(request, user_id):
 
 # --- Signup ---
 # FIXME create user profile on signup
-def signup(request):
-    if request.method == 'POST':
-        form = Register_Form(request.POST)
-        if form.is_valid():
-            form.save()
-            username = form.cleaned_data.get('username')
-            raw_password = form.cleaned_data.get('password1')
-            user = authenticate(username=username, password=raw_password)
-            login(request, user)
-            return redirect('home')
+# def signup(request):
+#     if request.method == 'POST':
+#         form = Register_Form(request.POST)
+#         if form.is_valid():
+#             form.save()
+#             username = form.cleaned_data.get('username')
+#             raw_password = form.cleaned_data.get('password1')
+#             user = authenticate(username=username, password=raw_password)
+#             login(request, user)
+#             return redirect('home')
 
 def signup(request):
   error_message = ''
   if request.method == 'POST':
     form = Register_Form(request.POST)
-    if form.is_valid():
-      user = form.save()
-      return redirect('login')
+    profile_form = Profile_Form(request.POST)
+    if form.is_valid() and profile_form.is_valid(): 
+        user = form.save()
+        print('form', form)
+        new_profile = profile_form.save(commit=False)
+        new_profile.user=user
+        new_profile.save()
+        login(request, user)
+        return redirect('profile_detail', user_id = user.id)
     else:
       error_message = 'Invalid sign up - try again'
   form = Register_Form()
-  context = {'form': form, 'error_message': error_message}
+  profile = Profile_Form()
+  context = {'form': form, 'profile' : profile, 'error_message': error_message}
   return render(request, 'registration/signup.html', context)
 
 
@@ -126,7 +133,7 @@ def signup(request):
 
 # --- Login ---
 
-def login(request):
+def login_user(request):
     username = request.POST['username']
     password = request.POST['password']
     user = authenticate(request, username=username, password=password)
