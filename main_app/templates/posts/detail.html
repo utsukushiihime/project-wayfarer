@@ -1,5 +1,27 @@
-{{ post.title }}
-{{ post.content }}
-{{ post.image }}
-{{ post.user }}
-{{ post.date }}
+{% extends 'base.html' %}
+{% block content %}
+
+<h1>Post Details</h1>
+
+<div class="row">
+    <div class="col s6">
+        <div class="card">
+            <div class="card-content">
+                <span class="card-title">{{ post.title }}</span>
+                <h4>{{ post.city }}</h4>
+                <p>Author: {{ post.user }}</p>
+                <p>Post Date: {{ post.date }}</p>
+                <p>Content: {{ post.content }}</p>
+                <img src="{{ post.image }}" alt="{{ post.city }}">
+                
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+
+{% endblock %}
