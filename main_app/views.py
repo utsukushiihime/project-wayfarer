@@ -88,19 +88,22 @@ def profile_detail(request, user_id):
     return render(request, 'profile/detail.html', context)
 
 # --- Signup ---
+
 def signup(request):
-    if request.method == 'POST':
-        form = UserCreationForm(request.POST)
-        if form.is_valid():
-            form.save()
-            username = form.cleaned_data.get('username')
-            raw_password = form.cleaned_data.get('password1')
-            user = authenticate(username=username, password=raw_password)
-            login(request, user)
-            return redirect('home')
+  error_message = ''
+  if request.method == 'POST':
+    form = UserCreationForm(request.POST)
+    if form.is_valid():
+      user = form.save()
+      return redirect('login')
     else:
-        form = UserCreationForm()
-    return render(request, 'registration/signup.html', {'form': form})
+      error_message = 'Invalid sign up - try again'
+  form = UserCreationForm()
+  context = {'form': form, 'error_message': error_message}
+  return render(request, 'registration/signup.html', context)
+
+
+
 
 # --- Login ---
 
