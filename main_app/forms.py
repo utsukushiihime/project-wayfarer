@@ -5,25 +5,63 @@ from django.contrib.auth.models import User
 from django import forms
 
 from .models import Profile, City, Post
-
-class Register_Form(UserCreationForm):
-    first_name = forms.CharField()
-    last_name = forms.CharField()
-    email = forms.EmailField()
-    current_city = forms.ModelChoiceField(queryset=City.objects.all())
-    
-    class  Meta: 
-        fields = ['username', 'email', 'first_name', 'last_name', 'password1', 'password2', 'current_city']
         
 class User_Form(ModelForm):
     class Meta:
         model = Profile
-        fields = ['user','current_city', 'image']
+        fields = ['user','city', 'image']
+        
+class Register_Form(UserCreationForm):
+    city = forms.CharField(max_length=100)
+    username = forms.CharField(max_length=100, help_text='Username')
+
+    class Meta:
+        model = User
+        fields = ["username", "password1", "password2", "city", "email", "first_name", "last_name"]
+        widgets = {
+        'username': forms.TextInput(
+            attrs={
+                'class': 'form-control'
+                }
+            ),
+        'password1': forms.PasswordInput(
+            attrs={
+                'class': 'form-control'
+                }
+            ),
+        'password2': forms.PasswordInput(
+            attrs={
+                'class': 'form-control'
+                }
+            ),
+        'city': forms.TextInput(
+            attrs={
+                'class': 'form-control'
+            }
+            ),
+        'email': forms.EmailInput(
+            attrs={
+                'class': 'form-control'
+            }
+            ),
+        'first_name': forms.TextInput(
+            attrs={
+                'class': 'form-control'
+            }
+            ),
+        'last_name': forms.TextInput(
+            attrs={
+                'class': 'form-control'
+            }
+            ),
+        
+        }
+
         
 class Profile_Form(ModelForm):
     class Meta:
         model = Profile
-        fields = ['current_city']
+        fields = ['city', 'user', 'image']
 
 class Post_Form(ModelForm):
 

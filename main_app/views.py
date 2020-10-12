@@ -88,9 +88,10 @@ def profile_detail(request, user_id):
     return render(request, 'profile/detail.html', context)
 
 # --- Signup ---
+# FIXME create user profile on signup
 def signup(request):
     if request.method == 'POST':
-        form = UserCreationForm(request.POST)
+        form = Register_Form(request.POST)
         if form.is_valid():
             form.save()
             username = form.cleaned_data.get('username')
@@ -118,14 +119,14 @@ def login(request):
 def profile_edit(request, user_id):
     user = User.objects.get(id=user_id)
     if request.method == 'POST':
-        user_form = User_Form(request.POST, instance=user)
+        # user_form = User_Form(request.POST, instance=user)
         profile_form = Profile_Form(request.POST, instance=user.profile)
-        if user_form.is_valid() and profile_form.is_valid():
-            user_form.save()
+        if profile_form.is_valid() and profile_form.is_valid():
             profile_form.save()
+            # user_form.save()
             return redirect('profile_detail', user_id=user.id)
         else:
             user_form = User_Form(instance=user)
             profile_form = Profile_Form(instance=user.profile)
             context = {'user': user, 'user_form': user_form, 'profile_form': profile_form}
-            return render(request, 'user/edit.html', context)
+            return render(request, 'profile/edit.html', context)
