@@ -4,30 +4,32 @@
 
 <div class="container-fluid bg-secondary">
   <div class='row pt-5 px-3'>
-      <div class='col-5'>Cities
+      <div class='col-5 text-white bg-dark' id="rounded">Cities
           <ul class="nav flex-column nav-pills">
             {% for city in cities %}
-            <li class="nav-item">
-              <a class="nav-link" href="{{ city.id }}">{{ city.name }}, {{ city.country }}</a>
+            <li class="nav-item" id="pillitem">
+              <div onclick="location.href='{{ city.id }}';" class='row' id="citypill">
               <img class="pic" src="{{ city.image }}" alt="">
+              <a class="nav-link" href="{{ city.id }}">{{ city.name }}</a>
+            </div>
           </li>
           {% endfor %}
           </ul>
       </div>
       <div class='col-7'>
           <div class="media">
-              <div class="media-body">
-                <h5 class="mt-0 mb-1">City</h5>
+              <div class="media-body text-white">
+                <h5 class="mt-0 mb-1">{{ city.name }} City</h5>
                 Country
               </div>
-              <img class="pic" src="https://i.imgur.com/aQprcWm.png?1" class="ml-3" alt="...">
+              <img class="pic" src="{{ city.image }}" alt="...">
             </div>
           <div class='row'>
-              <div class='col-8'>Posts</div>
+              <div class='col-8 text-white'>Posts</div>
               <div class='col-4'>
-                  <a class ='mr-3 text-black' data-toggle="modal" data-target="#exampleModal3">
-                      Add new post
-                  </a>
+                  <button type="button" class="btn btn-danger btn-rounded" data-toggle="modal" data-target="#exampleModal3">
+                      +
+                  </button>
                     
                     <!-- Modal -->
                     <div class="modal fade" id="exampleModal3" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
