@@ -6,11 +6,6 @@ from django import forms
 
 from .models import Profile, City, Post
 
-# class Register_Form(UserCreationForm):
-#     first_name = forms.CharField()
-#     last_name = forms.CharField()
-#     email = forms.EmailField()
-#     #current_city = forms.ModelChoiceField(queryset=City.objects.all())
     
 class Register_Form(UserCreationForm):
     current_city = forms.CharField(required=True)
