@@ -111,13 +111,13 @@ def signup(request):
 def signup(request):
   error_message = ''
   if request.method == 'POST':
-    form = UserCreationForm(request.POST)
+    form = Register_Form(request.POST)
     if form.is_valid():
       user = form.save()
       return redirect('login')
     else:
       error_message = 'Invalid sign up - try again'
-  form = UserCreationForm()
+  form = Register_Form()
   context = {'form': form, 'error_message': error_message}
   return render(request, 'registration/signup.html', context)
 

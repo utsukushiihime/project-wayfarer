@@ -8,29 +8,8 @@ from .models import Profile, City, Post
 
     
 class Register_Form(UserCreationForm):
+    city = forms.CharField(required=True)
     
-    current_city = forms.CharField(required=True)
-    
-    class  Meta: 
-        model = User
-        fields = ('username', 'password1', 'password2', 'current_city')
-
-    def save(self, commit=True):
-        user = super(Register_Form, self).save(commit=False)
-        user.current_city = self.cleaned_data["city"]
-        if commit:
-            user.save()
-        return user
-        
-class User_Form(ModelForm):
-    class Meta:
-        model = Profile
-        fields = ['user','city', 'image']
-        
-class Register_Form(UserCreationForm):
-    city = forms.CharField(max_length=100)
-    username = forms.CharField(max_length=100, help_text='Username')
-
     class Meta:
         model = User
         fields = ["username", "password1", "password2", "city", "email", "first_name", "last_name"]
@@ -73,6 +52,20 @@ class Register_Form(UserCreationForm):
         
         }
 
+
+
+    def save(self, commit=True):
+        user = super(Register_Form, self).save(commit=False)
+        user.current_city = self.cleaned_data["city"]
+        if commit:
+            user.save()
+        return user
+        
+class User_Form(ModelForm):
+    class Meta:
+        model = Profile
+        fields = ['user','city', 'image']
+        
         
 class Profile_Form(ModelForm):
     class Meta:
