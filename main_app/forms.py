@@ -13,7 +13,6 @@ from .models import Profile, City, Post
 #     #current_city = forms.ModelChoiceField(queryset=City.objects.all())
     
 class Register_Form(UserCreationForm):
-    
     current_city = forms.CharField(required=True)
     
     class  Meta: 
@@ -21,7 +20,7 @@ class Register_Form(UserCreationForm):
         fields = ('username', 'password1', 'password2', 'current_city')
 
     def save(self, commit=True):
-        user = super(Register_Form, self).save(commit=False)
+        user = super(Register_Form, self).save(commit)
         user.current_city = self.cleaned_data["current_city"]
         if commit:
             user.save()
