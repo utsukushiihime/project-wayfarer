@@ -12,9 +12,8 @@ class City(models.Model):
 
 class Profile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
-    #current_city = models.ForeignKey(City, on_delete=models.CASCADE)
+    city = models.CharField(max_length=150)
     image = models.CharField(max_length=250)
-    current_city = models.CharField(max_length=75)
     
     def __str__(self):
        return f"{self.user.first_name} {self.user.last_name}"
