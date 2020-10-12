@@ -90,16 +90,27 @@ def profile_detail(request, user_id):
 # --- Signup ---
 # FIXME create user profile on signup
 def signup(request):
-    profile_form = User.objects.all()
     if request.method == 'POST':
-    profile_form = UserCreationForm(request.POST)
+        form = Register_Form(request.POST)
+        if form.is_valid():
+            form.save()
+            username = form.cleaned_data.get('username')
+            raw_password = form.cleaned_data.get('password1')
+            user = authenticate(username=username, password=raw_password)
+            login(request, user)
+            return redirect('home')
+
+def signup(request):
+  error_message = ''
+  if request.method == 'POST':
+    form = UserCreationForm(request.POST)
     if form.is_valid():
       user = form.save()
       return redirect('login')
     else:
       error_message = 'Invalid sign up - try again'
-  profile_form = UserCreationForm()
-  context = {'profile_form': profile_form, 'error_message': error_message}
+  form = UserCreationForm()
+  context = {'form': form, 'error_message': error_message}
   return render(request, 'registration/signup.html', context)
 
 
