@@ -12,6 +12,7 @@ from .models import Profile, City, Post
 #     #current_city = forms.ModelChoiceField(queryset=City.objects.all())
     
 class Register_Form(UserCreationForm):
+    
     current_city = forms.CharField(required=True)
     
     class  Meta: 
