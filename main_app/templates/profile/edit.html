@@ -1,5 +1,5 @@
 <form action="{% url 'profile_edit' user.id %}" method="POST">
     {% csrf_token %}
     {{ profile_form.as_p }}
-    <input class="btn" type="submit" value="Update {{user.id }}">
+    <input class="btn" type="submit" value="Update {{user.name }}">
   </form>

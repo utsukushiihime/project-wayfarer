@@ -61,7 +61,7 @@ class Register_Form(UserCreationForm):
 class Profile_Form(ModelForm):
     class Meta:
         model = Profile
-        fields = ['city', 'user', 'image']
+        fields = ['city', 'image']
 
 class Post_Form(ModelForm):
 
