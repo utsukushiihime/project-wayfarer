@@ -3,7 +3,10 @@
 {% block content %}
 {% if user.is_authenticated %}
 <div class="container mt-5">
+<<<<<<< HEAD
+=======
 
+>>>>>>> submaster
     <form action="{% url 'profile_edit' user.id %}" method="POST">
         {% csrf_token %}
         {{ form.as_p }}
