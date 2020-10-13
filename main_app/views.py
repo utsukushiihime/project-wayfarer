@@ -19,6 +19,8 @@ def about(request):
 def api(request):
     return JsonResponse({"status": 200})
 
+# def profile(request):
+#     return render(request, 'profile/detail.html')
 
 # --- Posts Index ---
 @login_required
@@ -45,23 +47,45 @@ def posts_detail(request, post_id):
     context = {'post': post}
     return render(request, 'posts/detail.html', context)
 
+@login_required 
+def post_edit(request, post_id):
+    post = Post.objects.get(id=post_id)
+    if request.method == 'POST':
+        post_form = Post_Form(request.POST, instance=post)
+        if post_form.is_valid():
+            post_form.save()
+            return redirect('post_detail', post_id=post.id)
+        else:
+            post_form = Post_Form(instance=post)
+            context = {'post': post, 'post_form': post_form}
+            return render(request, 'posts/edit.html', context)
+
+# --- Post delete ---
+
+@login_required
+def post_delete(request, post_id):
+    Post.objects.get(id=post_id).delete()
+    return redirect("posts_index")
+
 # --- City Index ---
 # FIXME Adding data all to view for testing
 def cities_index(request):
     profile = Profile.objects.all()
     cities = City.objects.all()
     post = Post.objects.all()
-    context = {'cities': cities, 'post': post, 'profile': profile}
+    context = {'cities': cities, 'posts': post, 'profile': profile}
     return render(request, 'cities/index.html', context)
 
 # --- City Detail ---
 def cities_detail(request, city_id):
+    cities = City.objects.all()
     city = City.objects.get(id=city_id)
     posts = Post.objects.filter(city_id=city.id)
     post = Post.objects.all()
     post_form = Post_Form()
-    context = {'login': AuthenticationForm(), 'post': post, 'signup': UserCreationForm(), 'city': city, 'post_form': post_form, 'posts': posts}
+    context = {'login': AuthenticationForm(), 'post': post, 'signup': UserCreationForm(), 'city': city, 'cities': cities, 'post_form': post_form, 'posts': posts.order_by("-created_at")}
     return render(request, 'cities/detail.html', context)
+
         
 # --- Profile Detail ---
 # def profile_detail(request):
@@ -85,7 +109,10 @@ def profile_detail(request):
     posts = Post.objects.filter(user = user)
     context = {'posts': posts}
     return render(request, 'profile/profile.html', context)
+<<<<<<< HEAD
     
+=======
+>>>>>>> submaster
 
 
 # --- Profile delete ---
@@ -108,7 +135,7 @@ def signup(request):
         new_profile.user=user
         new_profile.save()
         login(request, user)
-        return redirect('profile_detail', user_id = user.id)
+        return redirect('profile')#, user_id = user.id)
     else:
       error_message = 'Invalid sign up - try again'
   form = Register_Form()
@@ -140,7 +167,11 @@ def profile_edit(request, user_id):
         if profile_form.is_valid() and profile_form.is_valid():
             profile_form.save()
             # user_form.save()
+<<<<<<< HEAD
             return redirect('profile')
+=======
+            return redirect('profile', user_id=user.id)
+>>>>>>> submaster
         else:
             user_form = User_Form(instance=user)
             profile_form = Profile_Form(instance=user.profile)

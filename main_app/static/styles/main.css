@@ -7,7 +7,6 @@
 .carousel-item {
     max-height: 400px !important;
     background-size: cover;
-<<<<<<< HEAD
 }
   
 .text-danger {
@@ -79,51 +78,3 @@
 #citypill:hover {
     height: 130px;
 }
-=======
-  }
-  
-  .text-danger {
-      color: white !important;
-      font: Roboto !important;
-  }
-  
-  .bg-dark {
-      background-image: linear-gradient(to right, #1b161f, #10101a, #16141c) !important;
-  }
-  
-  .profile-pic {
-      border-radius: 50%;
-      max-height: 150px;
-      max-width: 200px;
-      width: 120px;
-      height: 120px;
-  }
-  
-  .profile-list {
-      list-style-type: none;
-      padding: 20px;
-  }
-  
-  .col-5 {
-      padding: 20px;
-  }
-  
-  .bg-secondary {
-      background-image: linear-gradient(to bottom right, #271419, #322024, #160E18, #241E31, #181525, #211A2A, #1E1A2D, #13162D, #0D0F20, #0F1227, #0B0E1D) !important;
-      background-size: cover;
-      background-attachment: scroll;
-    }
-  
-    .pic {
-        border-radius: 20%;
-        max-height: 130px;
-        max-width: 130px;
-        width: 130px;
-        height: 130px;
-        object-fit: cover;
-    }
-
-  .card {
-      background: rgba(0, 0, 0, 0.2);
-  }
->>>>>>> submaster

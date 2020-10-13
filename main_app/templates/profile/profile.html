@@ -27,18 +27,20 @@
             </ul>
         </div>
         <div class='col-7'>
-            Posts
+            Posts           
             <div class="col">
-                <h1> {{title}} </h1>
-                {% for post in posts %}
-                <div class="card">
-                <a href="{% url 'posts_detail' post.id %}">
-                    <div class="card-content">
-                    <span class="card-title">{{ post.title }}</span>
-                    </div>
-                </a>
-                </div>
-                {% endfor %}
+                <ul class="text-white">
+                    <h1>{{title}}</h1>
+                    {% for post in posts %}
+                    <div class="card">
+                        <a href="{% url 'posts_detail' post.id %}">
+                            <div class="card-content">
+                            <span class="card-title">{{ user.post }}</span>
+                            <span class="card-title">{{ post.title }}</span>
+                            </div>  
+                        </a>
+                        </div>
+                    {% endfor %}         
             </div>
         </div>
     </div>
@@ -54,8 +56,6 @@
 
 
 
-
-Message Brendan Bliss, Crystal McNeil
 
 
 
