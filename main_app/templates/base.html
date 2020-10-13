@@ -41,7 +41,7 @@
         <li><a href="{% url 'logout' %}">Log Out</a></li>
         {% else %}
 
-        <!-- Button trigger modal -->
+        {% comment %}<!-- Button trigger modal -->{% endcomment %}
         <a
           class="mr-3 text-danger"
           data-toggle="modal"
@@ -50,7 +50,7 @@
           Sign In
         </a>
 
-        <!-- Modal -->
+        {% comment %}<!-- Modal -->{% endcomment %}
         <div
           class="modal fade"
           id="exampleModal"
@@ -85,7 +85,7 @@
           Sign Up
         </a>
 
-        <!-- Modal -->
+        {% comment %}<!-- Modal -->{% endcomment %}
         <div
           class="modal fade"
           id="exampleModal2"
