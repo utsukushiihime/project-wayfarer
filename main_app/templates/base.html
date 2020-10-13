@@ -18,7 +18,10 @@
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.0/css/all.min.css"
     />
     <link rel="stylesheet" href="{% static 'styles/main.css'%}" />
-    <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
+    <link
+      href="https://fonts.googleapis.com/css2?family=Roboto&display=swap"
+      rel="stylesheet"
+    />
     <script src="{% static 'scripts/app.js' %}" defer></script>
     <title>Wayfarer</title>
   </head>
@@ -36,9 +39,9 @@
         <span class="text-danger">Wayfarer</span>
       </a>
       <div class="form-inline">
-        <li><a href="{% url 'about' %}">About</a></li>
+        <a href="{% url 'about' %}">About</a>
         {% if user.is_authenticated %}
-        <li><a href="{% url 'logout' %}">Log Out</a></li>
+        <a href="{% url 'logout' %}">Log Out</a>
         {% else %}
 
         <!-- Button trigger modal -->
@@ -77,11 +80,7 @@
             </div>
           </div>
         </div>
-        <a
-          class="text-danger"
-          data-toggle="modal"
-          data-target="#exampleModal2"
-        >
+        <a class="text-danger" data-toggle="modal" data-target="#exampleModal2">
           Sign Up
         </a>
 

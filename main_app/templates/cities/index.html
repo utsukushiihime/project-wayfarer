@@ -1,86 +1,119 @@
-{% extends 'base.html' %}
-{% load static %}
-{% block content %}
+{% extends 'base.html' %} {% load static %} {% block content %}
 
-<div class="container-fluid bg-secondary">
-  <div class='row pt-5 px-3'>
-      <div class='col-5 text-white bg-dark' id="rounded">Cities
-          <ul class="nav flex-column nav-pills">
-            {% for city in cities %}
-            <li class="nav-item" id="pillitem">
-              <div onclick="location.href='{{ city.id }}';" class='row' id="citypill">
-              <img class="pic" src="{{ city.image }}" alt="">
-              <a class="nav-link" href="{{ city.id }}">{{ city.name }}</a>
-            </div>
-          </li>
-          {% endfor %}
-          </ul>
+<div class="container-fluid">
+  <div class="row pt-5 px-3">
+    <div class="col-5 text-white bg-dark" id="rounded">
+      Cities
+      <ul class="nav flex-column nav-pills">
+        {% for city in cities %}
+        <li class="nav-item" id="pillitem">
+          <div
+            onclick="location.href='{{ city.id }}';"
+            class="row"
+            id="citypill"
+          >
+            <img class="pic" src="{{ city.image }}" alt="" />
+            <a class="nav-link" href="{{ city.id }}">{{ city.name }}</a>
+          </div>
+        </li>
+        {% endfor %}
+      </ul>
+    </div>
+    <div class="col-7">
+      <div class="media">
+        <div class="text-white">
+          <h5 class="mt-0 mb-1">{{ city.name }} City</h5>
+          Country
+        </div>
+        <img class="pic" src="{{ city.image }}" alt="..." />
       </div>
-      <div class='col-7'>
-          <div class="media">
-              <div class="media-body text-white">
-                <h5 class="mt-0 mb-1">{{ city.name }} City</h5>
-                Country
-              </div>
-              <img class="pic" src="{{ city.image }}" alt="...">
-            </div>
-          <div class='row'>
-              <div class='col-8 text-white'>Posts</div>
-              <div class='col-4'>
-                  <button type="button" class="btn btn-danger btn-rounded" data-toggle="modal" data-target="#exampleModal3">
-                      +
-                  </button>
-                    
-                    <!-- Modal -->
-                    <div class="modal fade" id="exampleModal3" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                      <div class="modal-dialog">
-                        <div class="modal-content">
-                          <div class="modal-header">
-                            <h5 class="modal-title" id="exampleModalLabel">Create a new post</h5>
-                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                              <span aria-hidden="true">&times;</span>
-                            </button>
-                          </div>
-                          <div class="modal-body">
-                              <form>
-                                  <div class="dropdown">
-                                      <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                        Pick a location
-                                      </button>
-                                      <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                                        {% for city in cities  %}
-                                       
-                                        <a class="dropdown-item" href="{{ city.id }}">{{ city.name }}</a>
+      <div class="row">
+        <div class="col-8 text-white">Posts</div>
+        <div class="col-4">
+          <button
+            type="button"
+            class="btn btn-danger btn-rounded"
+            data-toggle="modal"
+            data-target="#exampleModal3"
+          >
+            +
+          </button>
 
-                                        {% endfor %}
-                                      </div>
-                                    </div>
-                                  <div class="form-group">
-                                    <label for="exampleInputPassword1">Title</label>
-                                    <input class="form-control" id="exampleInputPassword1">
-                                    <label for="exampleInputPassword1"></label>
-                                    <input class="form-control" id="exampleInputPassword1">
-                                  </div>
-                                  <button type="submit" class="btn btn-primary">Submit</button>
-                                </form>
-                          </div>
-                        </div>
+          <!-- Modal -->
+          <div
+            class="modal fade"
+            id="exampleModal3"
+            tabindex="-1"
+            aria-labelledby="exampleModalLabel"
+            aria-hidden="true"
+          >
+            <div class="modal-dialog">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h5 class="modal-title" id="exampleModalLabel">
+                    Create a new post
+                  </h5>
+                  <button
+                    type="button"
+                    class="close"
+                    data-dismiss="modal"
+                    aria-label="Close"
+                  >
+                    <span aria-hidden="true">&times;</span>
+                  </button>
+                </div>
+                <div class="modal-body">
+                  <form>
+                    <div class="dropdown">
+                      <button
+                        class="btn btn-secondary dropdown-toggle"
+                        type="button"
+                        id="dropdownMenuButton"
+                        data-toggle="dropdown"
+                        aria-haspopup="true"
+                        aria-expanded="false"
+                      >
+                        Pick a location
+                      </button>
+                      <div
+                        class="dropdown-menu"
+                        aria-labelledby="dropdownMenuButton"
+                      >
+                        {% for city in cities %}
+
+                        <a class="dropdown-item" href="{{ city.id }}"
+                          >{{ city.name }}</a
+                        >
+
+                        {% endfor %}
                       </div>
                     </div>
-                  </div>          
+                    <div class="form-group">
+                      <label for="exampleInputPassword1">Title</label>
+                      <input class="form-control" id="exampleInputPassword1" />
+                      <label for="exampleInputPassword1"></label>
+                      <input class="form-control" id="exampleInputPassword1" />
+                    </div>
+                    <button type="submit" class="btn btn-primary">
+                      Submit
+                    </button>
+                  </form>
+                </div>
+              </div>
+            </div>
           </div>
-          <ul class="nav flex-column nav-pills">
-            {% for post in posts  %}
-              
-            <li class="nav-item">
-              <a class="nav-link" href="{{ post.id }}">{{ post.title }}</a>
-              <p>{{ post.content }}</p>
-            </li>
-            {% endfor %}
-
-            
-          </ul>
+        </div>
       </div>
+      <ul class="nav flex-column nav-pills">
+        {% for post in posts %}
+
+        <li class="nav-item">
+          <a class="nav-link" href="{{ post.id }}">{{ post.title }}</a>
+          <p>{{ post.content }}</p>
+        </li>
+        {% endfor %}
+      </ul>
+    </div>
   </div>
 </div>
 {% endblock %}
