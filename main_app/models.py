@@ -28,7 +28,8 @@ class Post(models.Model):
     created_at = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
-            return f"Posted: {self.post_date} - Post Title: {self.title} - Author: {self.user.first_name}, posted an article about {self.city.name}."
+            # return f"Posted: {self.post_date} - Post Title: {self.title} - Author: {self.user.first_name}, posted an article about {self.city.name}."
+            return f"{self.title}"    
     class Meta:
         ordering = ['-post_date']
 
