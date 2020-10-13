@@ -73,7 +73,7 @@
             {% for post in posts  %}
               
             <li class="nav-item text-white">
-              <a class="nav-link" href="{{ post.id }}">{{ post.title }}</a>
+              <a class="nav-link" href="/posts/{{ post.id }}">{{ post.title }}</a>
               <p>{{ post.content }}</p>
             </li>
             {% endfor %}
