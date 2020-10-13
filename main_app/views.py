@@ -92,7 +92,7 @@ def profile_detail(request, user_id):
     user = User.objects.get(id=user_id)
     profile_form = Profile_Form()
     user_form = User_Form()
-    context = {'user': user, 'profile_form': profile_form, 'login': AuthenticationForm(), 'signup': UserCreationForm(), 'user_form': user_form, 'posts' : post}
+    context = {'user': user, 'profile_form': profile_form, 'login': AuthenticationForm(), 'signup': UserCreationForm(), 'user_form': user_form}
     return render(request, 'profile/detail.html', context)
 
 
