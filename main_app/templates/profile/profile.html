@@ -30,14 +30,17 @@
             Posts           
             <div class="col">
                 <ul class="text-white">
+                    <h1>{{title}}</h1>
                     {% for post in posts %}
-                      
-                    <li class="text-white">
-                      <a class="text-white" href="{{ post.id }}">{{ post.title }} posts</a>
-                      <p>{{ post.content }}</p>
-                    </li>
+                    <div class="card">
+                        <a href="{% url 'posts_detail' post.id %}">
+                            <div class="card-content">
+                            <span class="card-title">{{ user.post }}</span>
+                            <span class="card-title">{{ post.title }}</span>
+                            </div>  
+                        </a>
+                        </div>
                     {% endfor %}         
-                  </ul>
             </div>
         </div>
     </div>
@@ -53,8 +56,6 @@
 
 
 
-
-Message Brendan Bliss, Crystal McNeil
 
 
 

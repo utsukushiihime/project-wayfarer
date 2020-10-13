@@ -58,6 +58,11 @@ class Profile_Form(ModelForm):
         model = Profile
         fields = ['city', 'image']
 
+class User_Form(ModelForm):
+    class Meta:
+        model = User
+        fields = ['first_name', 'last_name']
+
 class Post_Form(ModelForm):
 
     class Meta:
