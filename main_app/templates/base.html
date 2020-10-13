@@ -38,6 +38,8 @@
       <div class="form-inline">
         <li><a href="{% url 'about' %}">About</a></li>
         {% if user.is_authenticated %}
+        <li><a href="{% url 'cities_index' %}">Cities</a></li>
+        <li><a href="{% url 'profile' %}">Profile</a></li>
         <li><a href="{% url 'logout' %}">Log Out</a></li>
         {% else %}
 

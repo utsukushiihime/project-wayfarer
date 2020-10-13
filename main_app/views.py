@@ -54,7 +54,7 @@ def post_edit(request, post_id):
         post_form = Post_Form(request.POST, instance=post)
         if post_form.is_valid():
             post_form.save()
-            return redirect('post_detail', post_id=post.id)
+            return redirect('posts_detail', post_id=post.id)
         else:
             post_form = Post_Form(instance=post)
             context = {'post': post, 'post_form': post_form}
@@ -109,10 +109,6 @@ def profile_detail(request):
     posts = Post.objects.filter(user = user)
     context = {'posts': posts}
     return render(request, 'profile/profile.html', context)
-<<<<<<< HEAD
-    
-=======
->>>>>>> submaster
 
 
 # --- Profile delete ---
@@ -167,11 +163,7 @@ def profile_edit(request, user_id):
         if profile_form.is_valid() and profile_form.is_valid():
             profile_form.save()
             # user_form.save()
-<<<<<<< HEAD
             return redirect('profile')
-=======
-            return redirect('profile', user_id=user.id)
->>>>>>> submaster
         else:
             user_form = User_Form(instance=user)
             profile_form = Profile_Form(instance=user.profile)
