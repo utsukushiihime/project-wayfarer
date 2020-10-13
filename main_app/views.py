@@ -19,8 +19,8 @@ def about(request):
 def api(request):
     return JsonResponse({"status": 200})
 
-def profile(request):
-    return render(request, 'profile/detail.html')
+# def profile(request):
+#     return render(request, 'profile/detail.html')
 
 # --- Posts Index ---
 @login_required
@@ -88,12 +88,27 @@ def cities_detail(request, city_id):
 
         
 # --- Profile Detail ---
-def profile_detail(request, user_id):
-    user = User.objects.get(id=user_id)
-    profile_form = Profile_Form()
-    user_form = User_Form()
-    context = {'user': user, 'profile_form': profile_form, 'login': AuthenticationForm(), 'signup': UserCreationForm(), 'user_form': user_form}
-    return render(request, 'profile/detail.html', context)
+# def profile_detail(request):
+#     print(request.user.id)
+#     user = User.objects.get(id=request.user.id)
+#     profile_form = Profile_Form()
+#     user_form = User_Form()
+#     posts = Post.objects.filter(user = request.user.id)
+#     context = {'user': user, 'profile_form': profile_form, 'login': AuthenticationForm(), 'signup': UserCreationForm(), 'user_form': user_form}
+#     return render(request, 'profile/detail.html', context)
+
+# def profile_detail(request, user_id):
+#     user = Post.objects.filter(user_id = request.user.id)
+#     post_form = Post_Form()
+#     posts = Post.objects.filter(user = request.user.id)
+#     context = {'user': user, 'user_id': user_id, 'posts': posts, 'post_form': post_form}
+#     return render(request, 'profile/detail.html', context)
+
+def profile_detail(request):
+    user = User.objects.get(id=request.user.id)
+    posts = Post.objects.filter(user = user)
+    context = {'posts': posts}
+    return render(request, 'profile/profile.html', context)
 
 
 # --- Profile delete ---
@@ -116,7 +131,7 @@ def signup(request):
         new_profile.user=user
         new_profile.save()
         login(request, user)
-        return redirect('profile_detail', user_id = user.id)
+        return redirect('profile')#, user_id = user.id)
     else:
       error_message = 'Invalid sign up - try again'
   form = Register_Form()
@@ -148,7 +163,7 @@ def profile_edit(request, user_id):
         if profile_form.is_valid() and profile_form.is_valid():
             profile_form.save()
             # user_form.save()
-            return redirect('profile_detail', user_id=user.id)
+            return redirect('profile', user_id=user.id)
         else:
             user_form = User_Form(instance=user)
             profile_form = Profile_Form(instance=user.profile)
