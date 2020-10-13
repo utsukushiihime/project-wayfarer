@@ -90,11 +90,6 @@ a:hover {
 #citypill:hover {
     height: 130px;
 }
-  
-.text-danger {
-    color: white !important;
-    font: Roboto !important;
-}
 
 .bg-dark {
     background-image: linear-gradient(to right, #1b161f, #10101a, #16141c) !important;

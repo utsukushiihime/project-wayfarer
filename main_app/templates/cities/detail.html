@@ -87,7 +87,21 @@
               </div>
             </div>
           </div>
+<<<<<<< HEAD
         </div>
+=======
+          <ul class="nav flex-column nav-pills">
+            {% for post in posts  %}
+              
+            <li class="nav-item text-white">
+              <a class="nav-link" href="/posts/{{ post.id }}">{{ post.title }}</a>
+              <p>{{ post.content }}</p>
+            </li>
+            {% endfor %}
+
+            
+          </ul>
+>>>>>>> origin/submaster
       </div>
       <ul class="nav flex-column nav-pills">
         {% for post in posts %}

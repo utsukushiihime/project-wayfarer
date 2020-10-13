@@ -47,6 +47,26 @@ def posts_detail(request, post_id):
     context = {'post': post}
     return render(request, 'posts/detail.html', context)
 
+@login_required 
+def post_edit(request, post_id):
+    post = Post.objects.get(id=post_id)
+    if request.method == 'POST':
+        post_form = Post_Form(request.POST, instance=post)
+        if post_form.is_valid():
+            post_form.save()
+            return redirect('post_detail', post_id=post.id)
+        else:
+            post_form = Post_Form(instance=post)
+            context = {'post': post, 'post_form': post_form}
+            return render(request, 'posts/edit.html', context)
+
+# --- Post delete ---
+
+@login_required
+def post_delete(request, post_id):
+    Post.objects.get(id=post_id).delete()
+    return redirect("posts_index")
+
 # --- City Index ---
 # FIXME Adding data all to view for testing
 def cities_index(request):
@@ -63,7 +83,7 @@ def cities_detail(request, city_id):
     posts = Post.objects.filter(city_id=city.id)
     post = Post.objects.all()
     post_form = Post_Form()
-    context = {'login': AuthenticationForm(), 'post': post, 'signup': UserCreationForm(), 'city': city, 'cities': cities, 'post_form': post_form, 'posts': posts}
+    context = {'login': AuthenticationForm(), 'post': post, 'signup': UserCreationForm(), 'city': city, 'cities': cities, 'post_form': post_form, 'posts': posts.order_by("-created_at")}
     return render(request, 'cities/detail.html', context)
 
         
