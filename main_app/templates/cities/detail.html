@@ -10,7 +10,7 @@
             <li class="nav-item" id="pillitem">
               <div onclick="location.href='{{ city.id }}';" class='row' id="citypill">
               <img class="pic" src="{{ city.image }}" alt="">
-              <a class="nav-link" href="{{ city.id }}">{{ city.name }}</a>
+              <a class="nav-link" href="/cities/{{ city.id }}">{{ city.name }}</a>
             </div>
           </li>
           {% endfor %}
@@ -50,7 +50,7 @@
                                       <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
                                         {% for city in cities  %}
                                        
-                                        <a class="dropdown-item" href="{{ city.id }}">{{ city.name }}</a>
+                                        <a class="dropdown-item">{{ city.name }}</a>
 
                                         {% endfor %}
                                       </div>

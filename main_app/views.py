@@ -53,24 +53,26 @@ def cities_index(request):
     profile = Profile.objects.all()
     cities = City.objects.all()
     post = Post.objects.all()
-    context = {'cities': cities, 'post': post, 'profile': profile}
+    context = {'cities': cities, 'posts': post, 'profile': profile}
     return render(request, 'cities/index.html', context)
 
 # --- City Detail ---
 def cities_detail(request, city_id):
+    cities = City.objects.all()
     city = City.objects.get(id=city_id)
     posts = Post.objects.filter(city_id=city.id)
     post = Post.objects.all()
     post_form = Post_Form()
-    context = {'login': AuthenticationForm(), 'post': post, 'signup': UserCreationForm(), 'city': city, 'post_form': post_form, 'posts': posts}
+    context = {'login': AuthenticationForm(), 'post': post, 'signup': UserCreationForm(), 'city': city, 'cities': cities, 'post_form': post_form, 'posts': posts}
     return render(request, 'cities/detail.html', context)
+
         
 # --- Profile Detail ---
 def profile_detail(request, user_id):
     user = User.objects.get(id=user_id)
     profile_form = Profile_Form()
     user_form = User_Form()
-    context = {'user': user, 'profile_form': profile_form, 'login': AuthenticationForm(), 'signup': UserCreationForm(), 'user_form': user_form}
+    context = {'user': user, 'profile_form': profile_form, 'login': AuthenticationForm(), 'signup': UserCreationForm(), 'user_form': user_form, 'posts' : post}
     return render(request, 'profile/detail.html', context)
 
 
