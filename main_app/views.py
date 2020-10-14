@@ -88,22 +88,6 @@ def cities_detail(request, city_id):
 
         
 # --- Profile Detail ---
-# def profile_detail(request):
-#     print(request.user.id)
-#     user = User.objects.get(id=request.user.id)
-#     profile_form = Profile_Form()
-#     user_form = User_Form()
-#     posts = Post.objects.filter(user = request.user.id)
-#     context = {'user': user, 'profile_form': profile_form, 'login': AuthenticationForm(), 'signup': UserCreationForm(), 'user_form': user_form}
-#     return render(request, 'profile/detail.html', context)
-
-# def profile_detail(request, user_id):
-#     user = Post.objects.filter(user_id = request.user.id)
-#     post_form = Post_Form()
-#     posts = Post.objects.filter(user = request.user.id)
-#     context = {'user': user, 'user_id': user_id, 'posts': posts, 'post_form': post_form}
-#     return render(request, 'profile/detail.html', context)
-
 def profile_detail(request):
     user = User.objects.get(id=request.user.id)
     posts = Post.objects.filter(user = user)
@@ -112,7 +96,6 @@ def profile_detail(request):
 
 
 # --- Profile delete ---
-
 @login_required
 def profile_delete(request, user_id):
     User.objects.get(id=user_id).delete()
@@ -131,7 +114,7 @@ def signup(request):
         new_profile.user=user
         new_profile.save()
         login(request, user)
-        return redirect('profile')#, user_id = user.id)
+        return redirect('profile')
     else:
       error_message = 'Invalid sign up - try again'
   form = Register_Form()
@@ -141,9 +124,7 @@ def signup(request):
 
 
 
-
 # --- Login ---
-
 def login_user(request):
     username = request.POST['username']
     password = request.POST['password']

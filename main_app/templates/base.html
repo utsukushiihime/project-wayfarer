@@ -18,7 +18,10 @@
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.0/css/all.min.css"
     />
     <link rel="stylesheet" href="{% static 'styles/main.css'%}" />
-    <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
+    <link
+      href="https://fonts.googleapis.com/css2?family=Roboto&display=swap"
+      rel="stylesheet"
+    />
     <script src="{% static 'scripts/app.js' %}" defer></script>
     <title>Wayfarer</title>
   </head>
@@ -33,89 +36,25 @@
           alt=""
           loading="lazy"
         />
-        <span class="text-danger">Wayfarer</span>
+        <span>Wayfarer</span>
       </a>
       <div class="form-inline">
-        <li><a href="{% url 'about' %}">About</a></li>
+        <a class="mr-3" href="{% url 'about' %}">About</a>
         {% if user.is_authenticated %}
-        <li><a href="{% url 'logout' %}">Log Out</a></li>
+        <a class="mr-3" href="/cities/1">Cities</a>
+        <a class="mr-3" href="/posts/">Posts</a>
+        <a class="mr-3" href="/profile/">Profile</a>
+        <a class="mr-3" href="{% url 'logout' %}">Log Out</a>
         {% else %}
-
-        <!-- Button trigger modal -->
-        <a
-          class="mr-3 text-danger"
-          data-toggle="modal"
-          data-target="#exampleModal"
-        >
-          Sign In
-        </a>
-
-        <!-- Modal -->
-        <div
-          class="modal fade"
-          id="exampleModal"
-          tabindex="-1"
-          aria-labelledby="exampleModalLabel"
-          aria-hidden="true"
-        >
-          <div class="modal-dialog">
-            <div class="modal-content">
-              <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Log In</h5>
-                <button
-                  type="button"
-                  class="close"
-                  data-dismiss="modal"
-                  aria-label="Close"
-                >
-                  <span aria-hidden="true">&times;</span>
-                </button>
-              </div>
-              <div class="modal-body">
-                {% include "registration/login.html" %}
-              </div>
-            </div>
-          </div>
-        </div>
-        <a
-          class="text-danger"
-          data-toggle="modal"
-          data-target="#exampleModal2"
-        >
-          Sign Up
-        </a>
-
-        <!-- Modal -->
-        <div
-          class="modal fade"
-          id="exampleModal2"
-          tabindex="-1"
-          aria-labelledby="exampleModalLabel"
-          aria-hidden="true"
-        >
-          <div class="modal-dialog">
-            <div class="modal-content">
-              <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Sign Up</h5>
-                <button
-                  type="button"
-                  class="close"
-                  data-dismiss="modal"
-                  aria-label="Close"
-                >
-                  <span aria-hidden="true">&times;</span>
-                </button>
-              </div>
-              <div class="modal-body">
-                {% include "registration/signup.html" %}
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
+        <a class="mr-3" href="{% url 'signup' %}">Register</a>
+        <a class="mr-3" href="{% url 'login' %}">Login</a>
       {% endif %}
     </nav>
-    <main>{% block content %} {% endblock %}</main>
+    <main>
+      {% block content %}
+       {% endblock %}
+    </main>
+
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.slim.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.1/umd/popper.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.2/js/bootstrap.min.js"></script>

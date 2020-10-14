@@ -1,18 +1,46 @@
 /*  Bootstrap Overrides */
+body {
+    background-image: linear-gradient(to right, #1b161f, #10101a, #16141c) !important;
+    color: #ccc;
+}
+
+.bg-secondary {
+    background: none;
+}
+
+.container {
+    background: none !important;
+}
+
+a {
+    color: #ccc;
+}
+
+a:hover {
+    color: #cc211f;
+}
 
 .modal-backdrop {
     position: unset !important;
 }
+
+.modal-content {
+  background-color: #10101ae3;
+}
+
+.modal-header {
+  border-bottom: 1px solid #333333;
+}
+
+.modal-footer {
+  border-top: 1px solid #333333;
+}
   
 .carousel-item {
-    max-height: 400px !important;
-    background-size: cover;
+    max-height: 500px !important;
+    background-size: contain;
 }
   
-.text-danger {
-    color: white !important;
-    font: Roboto !important;
-}
   
 .bg-dark {
     background-image: linear-gradient(to right, #1b161f, #10101a, #16141c) !important;
@@ -35,11 +63,7 @@
     padding: 20px;
 }
   
-.bg-secondary {
-    background-image: linear-gradient(to bottom right, #271419, #322024, #160E18, #241E31, #181525, #211A2A, #1E1A2D, #13162D, #0D0F20, #0F1227, #0B0E1D) !important;
-    background-size: cover !important;
-    background-attachment: scroll;
-}
+
   
 .pic {
     border-radius: 25px;
@@ -77,4 +101,182 @@
 
 #citypill:hover {
     height: 130px;
+}
+
+.bg-dark {
+    background-image: linear-gradient(to right, #1b161f, #10101a, #16141c) !important;
+}
+
+.profile-pic {
+    border-radius: 50%;
+    max-height: 150px;
+    max-width: 200px;
+    width: 120px;
+    height: 120px;
+}
+
+.profile-list {
+    list-style-type: none;
+    padding: 20px;
+}
+
+.col-5 {
+    padding: 20px;
+}
+
+.pic {
+border-radius: 20%;
+max-height: 130px;
+max-width: 130px;
+width: 130px;
+height: 130px;
+object-fit: cover;
+}
+
+.card {
+    background: rgba(0, 0, 0, 0.2);
+}
+
+
+/* LOGIN FORM */
+
+.form-signin {
+  width: 100%;
+  max-width: 420px;
+  padding: 15px;
+  margin: auto;
+}
+
+.form-label-group {
+  position: relative;
+  margin-bottom: 1rem;
+}
+
+.form-label-group input,
+.form-label-group label {
+  height: 3.125rem;
+  padding: .75rem;
+}
+
+.form-label-group label {
+  position: absolute;
+  top: 0;
+  left: 0;
+  display: block;
+  width: 100%;
+  margin-bottom: 0; /* Override default `<label>` margin */
+  line-height: 1.5;
+  color: #495057;
+  pointer-events: none;
+  cursor: text; /* Match the input under the label */
+  border: 1px solid transparent;
+  border-radius: .25rem;
+  transition: all .1s ease-in-out;
+}
+
+.form-label-group input::-webkit-input-placeholder {
+  color: transparent;
+}
+
+.form-label-group input::-moz-placeholder {
+  color: transparent;
+}
+
+.form-label-group input:-ms-input-placeholder {
+  color: transparent;
+}
+
+.form-label-group input::-ms-input-placeholder {
+  color: transparent;
+}
+
+.form-label-group input::placeholder {
+  color: transparent;
+}
+
+.form-label-group input:not(:-moz-placeholder-shown) {
+  padding-top: 1.25rem;
+  padding-bottom: .25rem;
+}
+
+.form-label-group input:not(:-ms-input-placeholder) {
+  padding-top: 1.25rem;
+  padding-bottom: .25rem;
+}
+
+.form-label-group input:not(:placeholder-shown) {
+  padding-top: 1.25rem;
+  padding-bottom: .25rem;
+}
+
+.form-label-group input:not(:-moz-placeholder-shown) ~ label {
+  padding-top: .25rem;
+  padding-bottom: .25rem;
+  font-size: 12px;
+  color: #777;
+}
+
+.form-label-group input:not(:-ms-input-placeholder) ~ label {
+  padding-top: .25rem;
+  padding-bottom: .25rem;
+  font-size: 12px;
+  color: #777;
+}
+
+.form-label-group input:not(:placeholder-shown) ~ label {
+  padding-top: .25rem;
+  padding-bottom: .25rem;
+  font-size: 12px;
+  color: #777;
+}
+
+/* Fallback for Edge
+-------------------------------------------------- */
+@supports (-ms-ime-align: auto) {
+  .form-label-group {
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-direction: column-reverse;
+    flex-direction: column-reverse;
+  }
+
+  .form-label-group label {
+    position: static;
+  }
+
+  .form-label-group input::-ms-input-placeholder {
+    color: #777;
+  }
+}
+
+
+/* GLOBAL CSS */
+
+input {
+  border-radius: 6px !IMPORTANT;
+  width: 100%;
+  padding-left: 2px;
+  height: 40px;
+}
+
+input.btn.btn-regular {
+
+    display: inline-block;
+    width: 80px;
+    height: 36px;
+    font-weight: 400;
+    color: #eee;
+    text-align: center;
+    vertical-align: middle;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    background-color: #007bff;
+    border: 1px solid transparent;
+    padding: .375rem .75rem;
+    font-size: 1rem;
+    line-height: 1.5;
+    border-radius: .25rem;
+    transition: color .15s ease-in-out,background-color .15s ease-in-out,border-color .15s ease-in-out,box-shadow .15s ease-in-out;
 }

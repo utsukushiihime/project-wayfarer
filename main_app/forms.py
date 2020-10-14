@@ -13,6 +13,17 @@ class Register_Form(UserCreationForm):
         model = User
         fields = ["username", "password1", "password2", "email", "first_name", "last_name"]
         widgets = {
+            
+        'first_name': forms.TextInput(
+            attrs={
+                'class': 'form-control'
+            }
+            ),
+        'last_name': forms.TextInput(
+            attrs={
+                'class': 'form-control'
+            }
+            ),
         'username': forms.TextInput(
             attrs={
                 'class': 'form-control'
@@ -32,17 +43,7 @@ class Register_Form(UserCreationForm):
             attrs={
                 'class': 'form-control'
             }
-            ),
-        'first_name': forms.TextInput(
-            attrs={
-                'class': 'form-control'
-            }
-            ),
-        'last_name': forms.TextInput(
-            attrs={
-                'class': 'form-control'
-            }
-            ),
+            )
         
         }
 
@@ -57,6 +58,11 @@ class Profile_Form(ModelForm):
     class Meta:
         model = Profile
         fields = ['city', 'image']
+
+class User_Form(ModelForm):
+    class Meta:
+        model = User
+        fields = ['first_name', 'last_name']
 
 class Post_Form(ModelForm):
 
@@ -86,6 +92,16 @@ class Post_Form(ModelForm):
                     'class': 'form-control'
                 }
             ),
+            'city': forms.Select(
+                attrs={
+                    'class': 'form-control'
+                }
+            ), 
+            'user': forms.Select(
+                attrs={
+                    'class': 'form-control'
+                }
+            )
 			}
         
 class City_Form(ModelForm):
