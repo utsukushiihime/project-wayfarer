@@ -12,6 +12,7 @@ class City(models.Model):
 
 class Profile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
+    # username = models.CharField(max_length=150)  #added
     city = models.CharField(max_length=150)
     image = models.CharField(max_length=250)
     
@@ -32,5 +33,6 @@ class Post(models.Model):
             return f"{self.title}"    
     class Meta:
         ordering = ['-post_date']
+
 
 
