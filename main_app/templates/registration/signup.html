@@ -3,22 +3,21 @@
 {% load static %} 
 {% block content %}
 
-<form class="form-signin" action="{% url 'signup' %}" method="POST">
-  {% csrf_token %} 
-  <div class="text-center mb-4">
-    <img class="mb-4" src="{% static 'images/WayfarerLogo4.png' %}" alt="" width="72" height="72">
-    <h1 class="h3 mb-3 font-weight-normal">Please Register</h1>
-  </div>
-  {% if error_message %}
-    <p class="text-danger">{{ error_message }}</p>
-  {% endif %}
-  {{ form|crispy }} {{ profile.as_p}}
-  <span class="buttons">
-  <button type="submit" class="btn btn-lg btn-primary btn-block" value="signup" type="submit">Register Now</button>
-  </span>
-  <input type="hidden" name="next" value="{{ next }}" />
-</form> 
-
+<div class="container mt-5">
+  <form class="form-signin" action="{% url 'signup' %}" method="POST">
+    {% csrf_token %} 
+    <div class="text-center mb-4">
+      <img class="mb-4" src="{% static 'images/WayfarerLogo4.png' %}" alt="" width="72" height="72">
+      <h1 class="h3 mb-3 font-weight-normal">Please Register</h1>
+    </div>
+    {% if error_message %}
+      <p class="text-danger">{{ error_message }}</p>
+    {% endif %}
+    {{ form|crispy }} {{ profile.as_p}}
+    <button type="submit" class="btn btn-danger" value="signup" type="submit">Register Now</button>
+    <input type="hidden" name="next" value="{{ next }}" />
+  </form> 
+</div>
 
 {% endblock %}
 

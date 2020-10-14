@@ -53,7 +53,7 @@ a:hover {
 }
   
 .bg-dark {
-  background-image: linear-gradient(to right, #16181ef0, #10101aed, #17181aeb) !important;
+  background: linear-gradient(to bottom, #16181e, #10101a, #0f021c) !important;
 }
 
 .profile-pic {
@@ -72,9 +72,7 @@ a:hover {
 .col-5 {
     padding: 20px;
 }
-  
 
-  
 .pic {
     border-radius: 25px;
     max-height: 100px;
@@ -84,16 +82,6 @@ a:hover {
     object-fit: cover;
     padding: 10px;
 }
-    
-.card {
-    background: rgba(0, 0, 0, 0.2);
-}
-
-#button {
-    border-radius: 50%;
-    background-color: red;
-    color: white
-}
 
 #rounded {
     border-radius: 25px;
@@ -101,19 +89,25 @@ a:hover {
 
 #citypill {
   border-radius: 25px;
+  text-transform: uppercase;
   align-items: center;
-  background-color: #1b1822;
+  background-color: #1b1822c7;
+}
+
+ul.nav.flex-column.nav-pills {
+  padding: 15px;
 }
 
 #pillitem {
     padding: 10px 0px 0px 0px;
 }
 
-#citypill:hover {
+.grow { 
+  transition: all .2s ease-in-out; 
 }
 
-.bg-dark {
-  background-image: linear-gradient(to top, #16181e, #10101a, #1d2124) !important;
+.grow:hover { 
+  transform: scale(1.1); 
 }
 
 .profile-pic {
@@ -145,7 +139,6 @@ object-fit: cover;
 .card {
     background: rgba(0, 0, 0, 0.2);
 }
-
 
 /* LOGIN FORM */
 
@@ -261,33 +254,41 @@ object-fit: cover;
 
 /* GLOBAL CSS */
 
-input {
-  border-radius: 6px !important;
+input#id_city, input#id_image, input#id_first_name, input#id_last_name, input#id_username {
   width: 100%;
-  height: 40px;
+  height: 45px;
+  border-radius: .25rem;
+}
+
+.form-control {
+  padding: 2px;
 }
 
 input.btn.btn-regular {
-
-    display: inline-block;
-    height: inherit;
-    width: inherit;
-    font-weight: 400;
-    color: #eee;
-    text-align: center;
-    vertical-align: middle;
-    -webkit-user-select: none;
-    -moz-user-select: none;
-    -ms-user-select: none;
-    user-select: none;
-    background-color: #007bff;
-    border: none;
-    padding: .375rem .75rem;
-    font-size: 1rem;
-    line-height: 1.5;
-    border-radius: .25rem;
-    transition: color .15s ease-in-out,background-color .15s ease-in-out,border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+  display: inline-block;
+  font-weight: 400;
+  color: #eee;
+  text-align: center;
+  vertical-align: middle;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  background-color: #cc211f;
+  border: 1px solid transparent;
+  padding: .375rem .75rem;
+  font-size: 1rem;
+  line-height: 1.5;
+  border-radius: .25rem;
+  transition: color .15s ease-in-out,background-color .15s ease-in-out,border-color .15s ease-in-out,box-shadow .15s ease-in-out;
 }
 
-/* BUTTON EFFECTS  */
 
+.btn-danger {
+  background: #cc211f;
+  text-decoration: none;
+}
+
+.btn-danger:hover {
+  background: #8b1614;
+}
