@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect
 from django.http import HttpResponse, JsonResponse
 from .models import City, Post, Profile
-from .forms import Post_Form, Profile_Form, User_Form, Register_Form
+from .forms import Post_Form, Profile_Form, User_Form, Register_Form, Profile_User_Form
 from django.contrib.auth import login, authenticate
 from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
 from django.contrib.auth.models import User
@@ -54,7 +54,7 @@ def post_edit(request, post_id):
         post_form = Post_Form(request.POST, instance=post)
         if post_form.is_valid():
             post_form.save()
-            return redirect('post_detail', post_id=post.id)
+            return redirect('posts_detail', post_id=post.id)
         else:
             post_form = Post_Form(instance=post)
             context = {'post': post, 'post_form': post_form}
@@ -160,12 +160,16 @@ def profile_edit(request, user_id):
     if request.method == 'POST':
         # user_form = User_Form(request.POST, instance=user)
         profile_form = Profile_Form(request.POST, instance=user.profile)
-        if profile_form.is_valid() and profile_form.is_valid():
+        profile_user_form = Profile_User_Form(request.POST, instance=user)
+        if profile_form.is_valid() and profile_user_form.is_valid():
             profile_form.save()
+            profile_user_form.save()
             # user_form.save()
-            return redirect('profile', user_id=user.id)
+            return redirect('profile')
         else:
             user_form = User_Form(instance=user)
             profile_form = Profile_Form(instance=user.profile)
-            context = {'user': user, 'user_form': user_form, 'profile_form': profile_form}
+            profile_user_form = Profile_User_Form(instance=user)
+            context = {'user': user, 'user_form': user_form, 'profile_form': profile_form, 'profile_user_form': profile_user_form}
             return render(request, 'profile/edit.html', context)
+

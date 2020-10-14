@@ -50,7 +50,7 @@ class Register_Form(UserCreationForm):
 class User_Form(ModelForm):
     class Meta:
         model = Profile
-        fields = ['user','city', 'image']
+        fields = ['user', 'city', 'image']
         
         
 class Profile_Form(ModelForm):
@@ -92,3 +92,15 @@ class City_Form(ModelForm):
     class Meta:
         model = City
         fields = ['name', 'image', 'country']
+
+
+class Profile_User_Form(ModelForm):
+    class Meta:
+        model = User
+        fields = ['username']
+
+
+
+
+
+
