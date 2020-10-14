@@ -1,7 +1,15 @@
-<h1>Login</h1>
+{% extends 'base.html' %} {% load static %} {% block content %}
 
-<form action="{% url 'login' %}" method="POST">
-  {% csrf_token %} {{form.as_p}}
-  <input type="submit" class="btn" value="login" />
+<form class="form-signin" action="{% url 'login' %}" method="POST">
+  {% csrf_token %} 
+  <div class="text-center mb-4">
+    <img class="mb-4" src="{% static 'images/WayfarerLogo4.png' %}" alt="" width="72" height="72">
+    <h1 class="h3 mb-3 font-weight-normal">Please Login</h1>
+  </div>
+
+  {{form.as_p}}
+
+  <button type="submit" class="btn btn-lg btn-primary btn-block" value="login" type="submit">Sign in</button>
   <input type="hidden" name="next" value="{{ next }}" />
 </form>
+{% endblock %}
