@@ -1,27 +1,26 @@
 {% extends 'base.html' %}
 {% block content %}
-
-<div class="container">
-    <div class="card text-left px-4">
-        <div class="card-header">
-            {{ post.title }} Details
-        </div>
-        <img src="{{ post.image }}" class="card-img-top" alt="{{ post.title }}">
-        <div class="card-body">
-
-            <h5 class="card-title">{{ post.title }}</h5>
-            <h6 class="card-subtitle mb-2 text-muted">Author: {{ post.user.first_name }}{{ post.user.last_name}}</h6>
-            <h6 class="card-subtitle mb-2 text-muted">Posted: {{ post.created_at }}</h6>
-            <p class="card-text">{{ post.content }}</p>
-        </div>
-        <div class="card-footer text-muted">
-            <form action="{% url 'post_edit' post.id %}" method="POST">
-            {% csrf_token %}
-            {{ form.as_p }}
-            <input class="btn btn-regular" type="submit" value="Edit">
-            <a class="btn btn-danger" onclick="return confirm('Are you sure you want to delete {{ post.title }}?')" href="{% url 'post_delete' post.id %}">Delete</a>
-            </form>
-        </div>
-    </div>
-</div>
+{% load crispy_forms_tags %}
+<div class="container mt-5">
+  <div class="card text-left px-4">
+      <div class="card-header">
+          {{ post.title }} Details
+      </div>
+      <img src="{{ post.image }}" class="card-img-top" alt="{{ post.title }}">
+      <div class="card-body">
+        <h5 class="card-title">{{ post.title }}</h5>
+        <h6 class="card-subtitle mb-2 text-muted">Author: {{ post.user.first_name }}{{ post.user.last_name}}</h6>
+        <h6 class="card-subtitle mb-2 text-muted">Created: {{ post.created_at }}</h6>
+        <small>Author: </small>
+        <p class="card-text">{{ post.content }}</p>
+      </div>
+      <div class="card-footer text-muted">
+        <form action="{% url 'post_edit' post.id %}" method="POST">
+        {% csrf_token %}
+        {{ form|crispy }}
+        <input class="btn btn-regular btn-sm" type="submit" value="Edit">
+        <a class="btn btn-danger" onclick="return confirm('Are you sure you want to delete {{ post.title }}?')" href="{% url 'post_delete' post.id %}">Delete</a>
+        </form>
+      </div>
+  </div>
 {% endblock %}

@@ -1,6 +1,20 @@
-<form action="{% url 'profile_edit' user.id %}" method="POST">
-  {% csrf_token %}
-  {{ profile_user_form.as_p }}
-  {{ profile_form.as_p }}
-  <input class="btn" type="submit" value="Update {{user.name }}">
-</form>
+
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+<div class="container mt-4">
+  <h1 class="text-center">Update your profile</h1>
+  <div class="row">
+    <form class="form-signin" action="{% url 'profile_edit' user.id %}" method="POST">
+      {% csrf_token %}
+      {{ profile_user_form.as_p }}
+      {{ profile_form.as_p }}
+      <input class="btn btn-danger" type="submit" value="Update {{user.name }}">
+      {% if error_message %}
+      <p class="text-danger">{{ error_message }}</p>
+    {% endif %}
+    </form>
+  </div>
+</div>
+
+{% endblock %}

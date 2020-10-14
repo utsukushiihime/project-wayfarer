@@ -6,7 +6,7 @@
     <h1>Recent Posts</h1>
     <div class="row mt-5">
 
-        <div class="col-10">
+        <div class="col-9">
             {% for post in posts %}
             <div class="card mb-3">
               <div class="row no-gutters">
@@ -16,9 +16,13 @@
                 <div class="col-md-8">
                   <div class="card-body">
                     <h5 class="card-title">{{ post.title }}</h5>
+                    <h6 class="card-subtitle mb-2 text-muted">{{ post.city }}</h6>
                     <p class="card-text">{{ post.content }}</p>
-                    <p class="card-text"><small class="text-muted">{{ post.created_at }}</small></p>
-                    <a href="{% url 'posts_detail' post.id %}" class="btn btn-primary">Read More</a>
+                    <p class="card-text">
+                      <small class="text-muted">Author: {{ post.user.first_name }} {{ post.user.last_name }}</small> <span class="text-muted">|</span>
+                    <small class="text-muted">{{ post.created_at }}</small>
+                    </p>
+                    <a href="{% url 'posts_detail' post.id %}" class="btn btn-danger">Read More</a>
                   </div>
                 </div>
               </div>
@@ -27,7 +31,7 @@
         </div>
     <div class="col-2">
       <!-- Button trigger modal -->
-<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#staticBackdrop">
+<button type="button" class="btn btn-danger rounded-circle" data-toggle="modal" data-target="#staticBackdrop">
     +
   </button>
   
@@ -45,6 +49,7 @@
         <form action="{% url 'posts_index' %}" method="POST">
         <div class="form-group">
             {% csrf_token %} {{ post_form.as_p }}
+            
         </div>
         </div>
         <div class="modal-footer">

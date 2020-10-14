@@ -5,17 +5,6 @@
 <div class="container mt-5">
     <h4>Welcome </h4>
     <div class='row bg-dark text-white pt-5 pb-5 px-2'>
-        <!-- <ul class="nav flex-column">
-                <li>
-                    <img class="img-thumbnail" src="{{ user.profile.image }}" width="250px" />
-                </li>
-                <li>
-                    Date Joined: {{ user.date_joined }}
-                </li>
-                <li>
-                    Current City: {{ user.profile.city }}
-                </li>
-            </ul> -->
     <div class="col-3">
         <div class="card" style="width: 18rem;">
             <img src="{{ user.profile.image }}" class="card-img-top" alt="...">
@@ -23,14 +12,20 @@
                 <h5 class="card-title">{{ user.first_name }} {{ user.last_name }}</h5>
                 <h6 class="card-subtitle mb-2 text-muted">Joined: {{ user.date_joined }}</h6>
                 <h6 class="card-subtitle mb-2 text-muted">Current City: {{ user.profile.city }}</h6>
-                <a href="#" class="btn btn-danger">My City: {{ user.profile.city }}</a>
             </div>
             <div class="card-footer">
             <form action="{% url 'profile_edit' user.id %}" method="POST">
                 {% csrf_token %}
                 {{ form.as_p }}
-                <input class="btn" type="submit" value="Update {{user.id }}">
-                </form>
+                <div class="btn-group" role="group" aria-label="Basic example">
+                    <button type="button" class="btn btn-primary"><input class="btn text-white text-left" type="submit" value="Update Profile"></button>
+                    <button type="button" class="btn btn-danger text-white btn-sm"><div class="card-action">
+                        <a class="text-white" href="{% url 'profile_delete' user.id %}">Delete</a>
+                    </div>
+                    </button>
+                </div>
+                
+            </form>
             </div>
         </div>
     </div>
@@ -60,14 +55,3 @@
 </div>
 {% endif %}
 {% endblock %}
-
-
-
-
-
-
-
-
-
-
-
