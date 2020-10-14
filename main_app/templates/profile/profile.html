@@ -3,18 +3,9 @@
 {% block content %}
 {% if user.is_authenticated %}
 <div class="container mt-5">
-    <form action="{% url 'profile_edit' user.id %}" method="POST">
-        {% csrf_token %}
-        {{ form.as_p }}
-        <input class="btn" type="submit" value="Update {{user.id }}">
-      </form>
-      <div class="card-action">
-        <a class="btn red" href="{% url 'profile_delete' user.id %}">Delete</a>
-    </div>
-    <h4>Welcome {{ user.first_name }}</h4>
+    <h4>Welcome </h4>
     <div class='row bg-dark text-white pt-5 pb-5 px-2'>
-        <div class='col-5'>Username: {{ user.username }}
-            <ul class="nav flex-column">
+        <!-- <ul class="nav flex-column">
                 <li>
                     <img class="img-thumbnail" src="{{ user.profile.image }}" width="250px" />
                 </li>
@@ -24,25 +15,43 @@
                 <li>
                     Current City: {{ user.profile.city }}
                 </li>
-            </ul>
-        </div>
-        <div class='col-7'>
-            Posts           
-            <div class="col">
-                <ul class="text-white">
-                    <h1>{{title}}</h1>
-                    {% for post in posts %}
-                    <div class="card">
-                        <a href="{% url 'posts_detail' post.id %}">
-                            <div class="card-content">
-                            <span class="card-title">{{ user.post }}</span>
-                            <span class="card-title">{{ post.title }}</span>
-                            </div>  
-                        </a>
-                        </div>
-                    {% endfor %}         
+            </ul> -->
+    <div class="col-3">
+        <div class="card" style="width: 18rem;">
+            <img src="{{ user.profile.image }}" class="card-img-top" alt="...">
+            <div class="card-body">
+                <h5 class="card-title">{{ user.first_name }} {{ user.last_name }}</h5>
+                <h6 class="card-subtitle mb-2 text-muted">Joined: {{ user.date_joined }}</h6>
+                <h6 class="card-subtitle mb-2 text-muted">Current City: {{ user.profile.city }}</h6>
+                <a href="#" class="btn btn-danger">My City: {{ user.profile.city }}</a>
+            </div>
+            <div class="card-footer">
+            <form action="{% url 'profile_edit' user.id %}" method="POST">
+                {% csrf_token %}
+                {{ form.as_p }}
+                <input class="btn" type="submit" value="Update {{user.id }}">
+                </form>
             </div>
         </div>
+    </div>
+    <div class="col ml-5">
+        {% for post in posts %}
+        <div class="card mt-3">
+            <div class="row no-gutters">
+                <div class="col-md-4">
+                <img src="{{ post.image }}" class="card-img" alt="...">
+                </div>
+                <div class="col-md-8">
+                <div class="card-body">
+                    <h5 class="card-title">{{ post.title }}</h5>
+                    <p class="card-text"><small class="text-muted">{{ post.created_at }}</small></p>
+                    <a href="{% url 'posts_detail' post.id %}" class="btn btn-danger btn-sm">Read More</a>
+                </div>
+                </div>
+            </div>
+            </div>
+        {% endfor %}
+    </div>
     </div>
 </div>
 {% else %}
