@@ -1,0 +1,63 @@
+{% extends 'base.html' %} 
+{% load static %} 
+{% block content %}
+
+<div class="container mt-5">
+  <h1>Recent Posts</h1>
+  <div class="row mt-5">
+    <div class="col-11">
+      {% for post in posts %}
+      <div class="card mb-3">
+        <div class="row no-gutters">
+          <div class="col-md-4">
+            <img src="{{ post.image }}" class="card-img" alt="...">
+          </div>
+          <div class="col-md-8">
+            <div class="card-body">
+            <h5 class="card-title">{{ post.title }}</h5>
+            <h6 class="card-subtitle mb-2 text-muted">{{ post.city }}</h6>
+              <p class="card-text" style="height:75px; overflow:hidden">{{ post.content }}</p>
+              <p class="card-text">
+                <small class="text-muted">Author: {{ post.user.first_name }} {{ post.user.last_name }}</small> <span class="text-muted">|</span>
+                <small class="text-muted">{{ post.created_at }}</small>
+              </p>
+              <a href="{% url 'posts_detail' post.id %}" class="btn btn-danger btn-sm">Read More</a>
+            </div>
+          </div>
+        </div>
+      </div>
+        {% endfor %}
+  </div>
+  <div class="col">
+    <!-- Button trigger modal -->
+    <button type="button" class="btn btn-danger rounded-circle grow" data-toggle="modal" data-target="#staticBackdrop">
+        +
+      </button>
+      <!-- Modal -->
+      <div class="modal fade" id="staticBackdrop" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="staticBackdropLabel">Add a Post</h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+            <form class="mx-3" action="{% url 'posts_index' %}" method="POST">
+            <div class="form-group">
+                {% csrf_token %} {{ post_form.as_p }}
+                
+            </div>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+              <button type="submit" class="btn btn-danger">Submit Post</button>
+            </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,34 @@
+{% extends 'base.html' %} {% load static %} {% block content %}
+
+<div class="container">
+  <div class="row pt-5 px-3">
+      <div class="col text-white bg-dark" id="rounded"> 
+        <h3 class="ml-3 mt-3">Cities</h3>
+          <ul class="nav flex-column nav-pills">
+            {% for city in cities %}
+            <li class="nav-item grow" id="pillitem">
+              <div class='row' id="citypill">
+              <img class="pic" src="{{ city.image }}" alt="">
+              <a class="nav-link" href="/cities/{{ city.id }}">{{ city.name }}</a>
+            </div>
+          </li>
+          {% endfor %}
+          </ul>
+      </div>
+      <div class="col-7">
+          <ul class="nav flex-column">
+            <h2>{{ city.name }}</h2>
+            <img class="img-fluid" style="object-fit: cover; height: 250px;" src="{{ city.image }}" alt="">
+            {% for post in posts  %}
+            <li class="nav-item text-white">
+              <a class="nav-link" href="/posts/{{ post.id }}">{{ post.title }}</a>
+              <small class="ml-3 text-muted">Author: {{ user.username }}</small>
+              <small class="ml-3 text-muted">Date: {{ post.post_date }}</small>
+              <p class="ml-3">{{ post.content }}</p>
+            </li>
+            {% endfor %}
+          </ul>
+      </div>
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,17 @@
+{% extends 'base.html' %} 
+{% load crispy_forms_tags %}
+{% load static %} 
+{% block content %}
+<div class="container mt-5">
+  <form class="form-signin" action="{% url 'login' %}" method="POST">
+    {% csrf_token %} 
+    <div class="text-center mb-4">
+      <img class="mb-4" src="{% static 'images/WayfarerLogo4.png' %}" alt="" width="72" height="72">
+      <h1 class="h3 mb-3 font-weight-normal">Please Login</h1>
+    </div>
+    {{form|crispy}}
+    <button type="submit" class="btn btn-danger" value="login" type="submit">Sign in</button>
+    <input type="hidden" name="next" value="{{ next }}" />
+  </form>
+</div>
+{% endblock %}
