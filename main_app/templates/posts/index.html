@@ -21,7 +21,7 @@
                 <small class="text-muted">Author: {{ post.user.first_name }} {{ post.user.last_name }}</small> <span class="text-muted">|</span>
                 <small class="text-muted">{{ post.created_at }}</small>
               </p>
-              <a href="{% url 'posts_detail' post.id %}" class="btn btn-danger">Read More</a>
+              <a href="{% url 'posts_detail' post.id %}" class="btn btn-danger btn-sm">Read More</a>
             </div>
           </div>
         </div>
