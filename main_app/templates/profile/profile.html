@@ -17,10 +17,10 @@
             <form action="{% url 'profile_edit' user.id %}" method="POST">
                 {% csrf_token %}
                 {{ form.as_p }}
-                    <button type="button" class="btn btn-primary btn-block">
+                    <button type="button" class="btn btn-primary btn-block" style="width:90%">
                         <input class="btn btn-sm text-white text-left" type="submit" value="Update Profile">
                     </button>
-                    <button type="button" class="btn btn-danger text-white btn-block"><div class="card-action">
+                    <button type="button" class="btn btn-danger text-white btn-block mr-2" style="width: 90%;"><div class="card-action">
                         <a class="text-white" href="{% url 'profile_delete' user.id %}">Delete</a>
                     </div>
                     </button>
