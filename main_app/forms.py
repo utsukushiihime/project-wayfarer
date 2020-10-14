@@ -113,7 +113,7 @@ class City_Form(ModelForm):
 class Profile_User_Form(ModelForm):
     class Meta:
         model = User
-        fields = ['username']
+        fields = ['first_name', 'last_name', 'username']
 
 
 
