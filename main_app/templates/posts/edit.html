@@ -1,8 +1,13 @@
-<form action="{% url 'post_edit' post.id %}" method="POST">
-    {% csrf_token %}
-    {{ post_form.as_p }}
-
-    
-    <input class="btn" type="submit" value="Update {{post.title }}">
-
+{% extends 'base.html' %}
+{% block content %}
+{% load crispy_forms_tags %}
+<div class="container">
+  <div class="row">
+  <form class="form-signin" action="{% url 'post_edit' post.id %}" method="POST">
+      {% csrf_token %}
+      {{ post_form.as_p }}
+      <input class="btn btn-danger" type="submit" value="Update Post">
   </form>
+  </div>
+</div>
+  {% endblock %}
