@@ -17,6 +17,8 @@
       </div>
       <div class="col-7">
           <ul class="nav flex-column">
+            <h2>{{ city.name }}</h2>
+            <img class="img-fluid" style="object-fit: cover; height: 250px;" src="{{ city.image }}" alt="">
             {% for post in posts  %}
             <li class="nav-item text-white">
               <a class="nav-link" href="/posts/{{ post.id }}">{{ post.title }}</a>

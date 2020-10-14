@@ -17,15 +17,13 @@
             <form action="{% url 'profile_edit' user.id %}" method="POST">
                 {% csrf_token %}
                 {{ form.as_p }}
-                <div class="btn-group" role="group" aria-label="Basic example">
-                    <button type="button" class="btn btn-primary">
-                        <input class="btn text-white text-left" type="submit" value="Update Profile">
+                    <button type="button" class="btn btn-primary btn-block">
+                        <input class="btn btn-sm text-white text-left" type="submit" value="Update Profile">
                     </button>
-                    <button type="button" class="btn btn-danger text-white btn-sm"><div class="card-action">
+                    <button type="button" class="btn btn-danger text-white btn-block"><div class="card-action">
                         <a class="text-white" href="{% url 'profile_delete' user.id %}">Delete</a>
                     </div>
                     </button>
-                </div>
                 
             </form>
             </div>
